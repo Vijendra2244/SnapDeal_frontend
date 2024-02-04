@@ -1,0 +1,38 @@
+.mainCopyRight{
+    width: 88%;
+    margin: auto;
+    display:flex;
+   justify-content: space-between;
+   padding: 1rem;
+}
+.copy{
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+.made{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+
+.heart{
+    color: red;
+    font-size: 1rem;
+}
+
+@media screen and (max-width:768px) {
+    .mainCopyRight{
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+@media screen and (max-width:640px) {
+    .mainCopyRight{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+}

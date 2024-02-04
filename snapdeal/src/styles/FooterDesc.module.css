@@ -1,0 +1,17 @@
+.mainDesc{
+    padding: 2rem;
+    width: 90%;
+    margin: auto;
+}
+.title{
+    color: black;
+    font-weight: 600;
+}
+.desc{
+    font-size: 0.8rem;
+    line-height: 2;
+    opacity: 0.6;
+}
+.desc:hover{
+    cursor: pointer;
+}

@@ -43,6 +43,11 @@
 }
 @media screen and (max-width:570px) {
    .searchContainer{
-      width: 90%;
+      width: 90%;    
+   }
+}
+@media screen and (max-width:500px) {
+   .searchContainer{
+      width: 85%;
    }
 }
