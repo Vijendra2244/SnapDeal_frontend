@@ -1,0 +1,16 @@
+.navbarContainer{
+  height: 65px;
+  background-color: var(--mainColor);
+  display: flex;
+  align-items: center;
+}
+
+.navbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
+  position: relative;
+}
+

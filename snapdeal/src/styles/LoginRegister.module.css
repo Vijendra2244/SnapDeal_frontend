@@ -1,0 +1,53 @@
+.shortCard {
+  width: 15%;
+  background-color: var(--btnColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 18vh;
+  padding: 2rem 0;
+  color: var(--normalColor);
+  border-radius: 2px;
+  position: absolute;
+ top: 105%;
+  left: 85%;
+}
+.textForNewUser {
+  color: var(--normalColor);
+  font-size: 0.8rem;
+
+}
+.registerButton {
+  border: none;
+  outline: none;
+  margin: 0.5rem auto;
+  background-color: transparent;
+  color: var(--normalColor);
+}
+.loginButton {
+  width: 90%;
+  margin: auto;
+  background-color: var(--mainColor);
+  border: none;
+  outline: none;
+  color: var(--normalColor);
+  padding: 8px;
+  font-size: 1.1rem;
+  border-radius: 2px;
+
+}
+.loginButton:hover{
+    background-color: var(--headerColor);
+    cursor: pointer;
+}
+
+.registerButton:hover{
+    cursor: pointer;
+}
+
+@media screen and (max-width:1200px) {
+    .shortCard{
+        display: none;
+    }
+}

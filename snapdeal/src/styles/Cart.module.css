@@ -1,0 +1,23 @@
+.cartContainer {
+  display: flex;
+  gap: 0.5rem;
+  color: var(--normalColor);
+}
+
+.cartIcon {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.cartText {
+  font-size: 0.9rem;
+}
+.cartContainer:hover {
+  cursor: pointer;
+}
+
+@media screen  and (max-width:1200px){
+    .cartContainer{
+        display: none;
+    }
+}
