@@ -1,0 +1,29 @@
+.mainContainer {
+  background-color: var(--headerColor);
+  height: 30px;
+  color: var(--sectionColor);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+.leftContainer {
+  margin-left: 3.5rem;
+}
+.rightContainer {
+  margin-right: 3.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.someFeatures {
+  color: var(--sectionColor);
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1200px) {
+  .mainContainer {
+    display: none;
+  }
+}
