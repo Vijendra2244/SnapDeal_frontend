@@ -1,0 +1,31 @@
+
+
+.singInContainer{
+    display: flex;
+    align-items: center;
+ 
+}
+.signInButton{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--normalColor);
+}
+.userIcon{
+    color: var(--normalColor);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.signInButton:hover{
+    cursor: pointer;
+}
+
+
+@media screen  and  (max-width:1200px){
+    .singInContainer{
+        display: none;
+    }
+}
