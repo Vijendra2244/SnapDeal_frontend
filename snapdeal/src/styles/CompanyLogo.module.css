@@ -1,8 +1,38 @@
 .logoContainer {
-  width: 6%;
+  width: 12%;
 }
 .snapDealLogo {
     width: 100%;
 }
 
 
+@media screen and (max-width:1200px) {
+  .logoContainer{
+    width: 14%;
+  }
+}
+@media screen and (max-width:1000px) {
+  .logoContainer{
+    width: 16%;
+  }
+}
+@media screen and (max-width:900px) {
+  .logoContainer{
+    width: 17%;
+  }
+}
+@media screen and (max-width:700px) {
+  .logoContainer{
+    width: 19%;
+  }
+}
+@media screen and (max-width:600px) {
+  .logoContainer{
+    width: 21%;
+  }
+}
+@media screen and (max-width:400px) {
+  .logoContainer{
+    width: 90%;
+  }
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../styles/CompanyLogo.module.css";
-import logo from "../images/snapdeallogo.svg";
+import logo from "../images/Screenshot (438).png";
 
 function CompanyLogo() {
   return (

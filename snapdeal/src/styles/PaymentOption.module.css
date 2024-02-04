@@ -1,0 +1,54 @@
+.payment {
+  width: 60%;
+}
+
+.socialMain {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 90%;
+  margin: auto;
+  place-items: center;
+  padding: 2rem;
+}
+
+.heading {
+  color: var(--btnColor);
+  font-size: 0.9rem;
+  margin-bottom: 0.7rem;
+}
+.socialIcon {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(7,1fr);
+  font-size: 1.6rem;
+  color: var(--mainColor);
+}
+.socialIcon:hover{
+    cursor: pointer;
+    color: var(--headerColor);
+}
+
+@media screen and (max-width:768px) {
+  .socialMain{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    gap: 1rem;
+  }
+  .socialIcon {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(7,1fr);
+    font-size: 1.4rem;
+ 
+  }
+}
+@media screen and (max-width:500px) {
+
+  .socialIcon {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(7,1fr);
+    font-size: 1rem;
+ 
+  }
+}
