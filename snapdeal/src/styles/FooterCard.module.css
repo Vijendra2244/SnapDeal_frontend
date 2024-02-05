@@ -50,4 +50,18 @@
     grid-template-columns: repeat(1, 1fr);
     gap: 1rem;
   }
+  .card {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .footerCard {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+  }
+  .card {
+    width: 80%;
+  }
 }
