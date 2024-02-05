@@ -1,0 +1,36 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    background-color: var(--normalColor);
+    padding: 1rem;
+    border-radius: 4px;
+
+}
+
+.linkCategory{
+    list-style: none;
+    color: var(--btnColor);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+.more{
+    color: var(--btnColor);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+@media screen and (max-width:1168px) {
+    .main{
+      display: flex;
+      flex-direction: row;
+      width: 90%;
+      margin: auto;
+    }
+  }
+  @media screen  and (max-width:640px) {
+    .main{
+        display: flex;
+        flex-wrap: wrap;
+    }
+  }

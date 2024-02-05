@@ -1,0 +1,16 @@
+.main {
+    width: 90%;
+    margin: 1rem auto;
+    display: flex;
+    
+}
+
+@media screen and (max-width:1168px) {
+    .main{
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        margin: auto;
+        gap: 1rem;
+    }
+}
