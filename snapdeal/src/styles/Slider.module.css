@@ -1,0 +1,18 @@
+.main {
+  width: 80%;
+  margin: 0 0 0 auto;
+  overflow: hidden;
+  border-radius: 6px;
+}
+.img {
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+@media screen and (max-width:1168px) {
+  .main{
+    width: 90%;
+    margin: auto;
+  }
+}

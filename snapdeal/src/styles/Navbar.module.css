@@ -1,11 +1,11 @@
-.navbarContainer{
+.navbarContainer {
   height: 65px;
   background-color: var(--mainColor);
   display: flex;
   align-items: center;
 }
 
-.navbar{
+.navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,9 +14,19 @@
   position: relative;
 }
 
-@media screen and (max-width:500px) {
-  .navbar{
+@media screen and (max-width: 500px) {
+  .navbar {
     display: flex;
     gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .navbar {
+    display: flex;
+    width: 100%;
+  }
+  .navbarContainer{
+    width: 100%;
   }
 }

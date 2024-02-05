@@ -1,17 +1,12 @@
 import "./App.css";
 import Poster from "./components/Poster";
-import Footer from "./section/footer/Footer";
-import Header from "./section/header/Header";
-import Navbar from "./section/navbar/Navbar";
+import AllRoutes from "./routes/AllRoutes";
 
 function App() {
   return (
     <>
-      <Header />
-      <Navbar />
+      <AllRoutes />
       <Poster />
-      <Footer />
-
     </>
   );
 }
