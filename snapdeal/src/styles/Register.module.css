@@ -1,0 +1,82 @@
+.mainRegister {
+  width: 30%;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+  padding: 1rem;
+  border-radius: 4px;
+}
+.formData {
+  display: flex;
+  flex-direction: column;
+  color: var(--btnColor);
+}
+.registerBtn {
+  background-color: var(--btnColor);
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  margin: 1rem 0;
+  padding: 10px;
+  color: var(--normalColor);
+  font-size: 1.2rem;
+}
+.registerBtn:hover {
+  cursor: pointer;
+  background-color: rgb(25, 23, 23);
+}
+
+.heading{
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color:var(--btnColor);
+}
+.input{
+    padding: 5px;
+    font-size: 1rem;
+    color: var(--btnColor);
+    border-radius: 4px;
+    outline: none;
+   border: 1px solid var(--btnColor);
+}
+.input:focus {
+    border: 1px solid var(--mainColor);
+  }
+
+  @media screen and (max-width:900px) {
+    .mainRegister{
+        width: 40%;
+        margin: 2rem auto;
+    }
+  }
+  @media screen and (max-width:768px) {
+    .mainRegister{
+        width: 40%;
+        margin: 2rem auto;
+    }
+  }
+  @media screen and (max-width:640px) {
+    .mainRegister{
+        width: 50%;
+        margin: 2rem auto;
+    }
+  }
+  @media screen and (max-width:500px) {
+    .mainRegister{
+        width: 60%;
+        margin: 2rem auto;
+    }
+  }
+  @media screen and (max-width:440px) {
+    .mainRegister{
+        width: 80%;
+        margin: 2rem auto;
+    }
+  }
+  @media screen and (max-width:300px) {
+    .mainRegister{
+        width: 90%;
+        margin: 2rem auto;
+    }
+  }

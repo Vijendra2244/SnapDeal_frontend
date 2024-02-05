@@ -10,14 +10,13 @@
   color: var(--normalColor);
   border-radius: 2px;
   position: absolute;
- top: 105%;
+  top: 105%;
   left: 85%;
   z-index: 111;
 }
 .textForNewUser {
   color: var(--normalColor);
   font-size: 0.8rem;
-
 }
 .registerButton {
   border: none;
@@ -27,7 +26,7 @@
   color: var(--normalColor);
 }
 .loginButton {
-  width: 90%;
+  width: 100%;
   margin: auto;
   background-color: var(--mainColor);
   border: none;
@@ -36,19 +35,22 @@
   padding: 8px;
   font-size: 1.1rem;
   border-radius: 2px;
-
 }
-.loginButton:hover{
-    background-color: var(--headerColor);
-    cursor: pointer;
-}
-
-.registerButton:hover{
-    cursor: pointer;
+.loginButton:hover {
+  background-color: var(--headerColor);
+  cursor: pointer;
 }
 
-@media screen and (max-width:1200px) {
-    .shortCard{
-        display: none;
-    }
+.registerButton:hover {
+  cursor: pointer;
+}
+
+/* .link{
+  width: 100%;
+  margin: 1rem auto;
+} */
+@media screen and (max-width: 1200px) {
+  .shortCard {
+    display: none;
+  }
 }
