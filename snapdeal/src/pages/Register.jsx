@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "../styles/Register.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [userDetails, setUserDetails] = useState({
@@ -10,7 +11,7 @@ function Register() {
     mobilenumber: "",
     avatar: null,
   });
-
+  const navigate = useNavigate()
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
@@ -43,6 +44,10 @@ function Register() {
       );
 
       console.log(res);
+      if(res.data.status=="success"){
+         alert("Registered successfully")
+         navigate("/")
+      }
 
       setUserDetails({
         username: "",
@@ -52,7 +57,9 @@ function Register() {
         avatar: null,
       });
     } catch (error) {
-      console.error("Registration failed:", error);
+      if (error.response && error.response.data.status === "fail") {
+        alert("All field are required!");
+      }
     }
   };
 

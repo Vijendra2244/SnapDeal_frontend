@@ -5,7 +5,7 @@
 }
 .mainDiv {
   display: flex;
-  height: 180px;
+  height: 280px;
   width: 100%;
   overflow: auto;
 }
@@ -41,6 +41,44 @@
 .mainDiv::-webkit-scrollbar {
   height: 2px;
 }
+.addToCart{
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  background-color: var(--btnColor);
+  color: var(--normalColor);
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+.addToCart:hover{
+  cursor: pointer;
+background-color: black;
+}
+.img {
+  height: 70%;
+padding: 2rem;
+  object-fit: cover;
+}
+.card {
+  padding: 1rem;
+}
+.card:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.title,
+.price {
+  color: var(--btnColor);
+  opacity: 0.9;
+  font-size: 0.9rem;
+}
+.title{
+  margin-bottom: 0.5rem;
+}
+.rightButton,.leftButton:hover{
+  cursor: pointer;
+}
 
 @media screen and (max-width: 768px) {
   .rightButton {
@@ -51,5 +89,4 @@
   .rightButton {
     left: 90%;
   }
-
 }
