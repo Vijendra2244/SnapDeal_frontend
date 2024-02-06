@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import styles from "../styles/Login.module.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [userDetails, setUserDetails] = useState({
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,14 +32,18 @@ function Login() {
         }
       );
 
-      console.log(res);
-
+      if (res.data.status == "success") {
+        alert("Login successfully");
+        navigate("/");
+      }
       setUserDetails({
         email: "",
         password: "",
       });
     } catch (error) {
-      console.error("Login failed:", error);
+      if (error.response && error.response.data.status === "fail") {
+        alert("Incorrect email or password. Please try again.");
+      }
     }
   };
 
@@ -66,17 +72,18 @@ function Login() {
           required
           className={styles.input}
         />
-         <div className={styles.passwordOption}>
-            <Link className={styles.linkPass} to="/resetpassword">
+        <div className={styles.passwordOption}>
+          <Link className={styles.linkPass} to="/resetpassword">
             <p className={styles.passwordNew}>Reset Password</p>
-            </Link>
-            <Link className={styles.linkPass}  to="/forgetpassword">
+          </Link>
+          <Link className={styles.linkPass} to="/forgetpassword">
             <p className={styles.passwordNew}>Forget Password</p>
-            </Link>
-         </div>
+          </Link>
+        </div>
         <button className={styles.registerBtn} type="submit">
           Login
         </button>
+        <Link  className={styles.linkPass} to="/register">If you are new user please register first</Link>
       </form>
     </div>
   );

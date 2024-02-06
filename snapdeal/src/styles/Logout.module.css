@@ -1,0 +1,17 @@
+.btn{
+    border: none;
+    outline: none;
+    color: var(--normalColor);
+    padding: 0.5rem;
+    border-radius: 4px;
+    background-color: transparent;
+}
+.btn:hover{
+    cursor: pointer;
+}
+
+@media screen and (max-width:1200px) {
+    .main{
+        display: none;
+    }
+}

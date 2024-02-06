@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import styles from "../styles/Login.module.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function OtpVerify() {
   const [userDetails, setUserDetails] = useState({
     email: "",
     otp: "",
   });
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -31,19 +31,25 @@ function OtpVerify() {
       );
 
       console.log(res);
-
+      if (res.data.status == "success") {
+        navigate("/forgetbyotp");
+      }
       setUserDetails({
         email: "",
         otp: "",
       });
     } catch (error) {
-      console.error("Reset  failed:", error);
+      if (error.response && error.response.data.status === "fail") {
+        alert(
+          "Your otp  and email is incorrect please enter correct email and otp"
+        );
+      }
     }
   };
 
   return (
     <div className={styles.mainRegister}>
-      <p className={styles.heading}>Send OTP to your email</p>
+      <p className={styles.heading}>Enter your OTP</p>
       <form onSubmit={handleSubmit} className={styles.formData}>
         <label htmlFor="email">Enter your email</label>
         <input
@@ -67,11 +73,9 @@ function OtpVerify() {
           className={styles.input}
         />
 
-    
-          <button className={styles.registerBtn} type="submit">
-            Otp Verification
-          </button>
-    
+        <button className={styles.registerBtn} type="submit">
+          Otp Verification
+        </button>
       </form>
     </div>
   );

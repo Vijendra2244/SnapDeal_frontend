@@ -2,25 +2,25 @@ import React, { useEffect, useState } from "react";
 import styles from "../styles/Mens.module.css";
 import axios from "axios";
 
-function Mens() {
-  const [mensData, setMensData] = useState([]);
-  const fetchMensData = async () => {
+function Mobiles() {
+  const [mobiles, setMobiles] = useState([]);
+  const fetchMobilesData = async () => {
     try {
       const res = await axios.get(
-        "https://snapdealbackend-production.up.railway.app/products/?category=Men's Clothing"
+        "https://snapdealbackend-production.up.railway.app/products/?category=Mobile Phones"
       );
-
-      setMensData(res.data.data.products);
+  console.log(res)
+      setMobiles(res.data.data.products);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
-    fetchMensData();
+    fetchMobilesData()
   }, []);
   return (
     <div className={styles.mens}>
-      {mensData.map((item, index) => (
+      {mobiles.map((item, index) => (
         <div className={styles.mainCard} key={index}>
           <div className={styles.imageContainer}>
             <img className={styles.img} src={item.productImage} alt="" />
@@ -34,4 +34,4 @@ function Mens() {
   );
 }
 
-export default Mens;
+export default Mobiles;

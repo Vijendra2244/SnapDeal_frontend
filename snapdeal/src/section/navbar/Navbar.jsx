@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import styles from "../../styles/Navbar.module.css";
 import CompanyLogo from "../../components/CompanyLogo";
 import SearchBar from "../../components/SearchBar";
 import Cart from "../../components/Cart";
 import SignIn from "../../components/SignIn";
+import Logout from "../../pages/Logout";
 
 
 function Navbar() {
+
 
   return (
     <div className={styles.navbarContainer}>
@@ -15,6 +17,7 @@ function Navbar() {
         <SearchBar />
         <Cart />
         <SignIn />
+       <Logout/>
       </nav>
     </div>
   );
