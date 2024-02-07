@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import styles from "../styles/Login.module.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function OtpResetPass() {
   const [userDetails, setUserDetails] = useState({
     email: "",
-    newPassword:""
+    newPassword: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,19 +32,27 @@ function OtpResetPass() {
       );
 
       console.log(res);
+      if (res.data.status == "success") {
+        alert("Password reset successfully");
+        navigate("/");
+      }
 
       setUserDetails({
         email: "",
-        newPassword:""
+        newPassword: "",
       });
     } catch (error) {
-      console.error("Reset  failed:", error);
+      if (error.response && error.response.data.status === "fail") {
+        alert(
+          "Otp not send please enter valid email which is verified on gmail.com"
+        );
+      }
     }
   };
 
   return (
     <div className={styles.mainRegister}>
-      <p className={styles.heading}>Send OTP to your email</p>
+      <p className={styles.heading}>Enter your email and new password</p>
       <form onSubmit={handleSubmit} className={styles.formData}>
         <label htmlFor="email">Enter your email</label>
         <input
@@ -67,11 +76,10 @@ function OtpResetPass() {
           required
           className={styles.input}
         />
-       
-          <button className={styles.registerBtn} type="submit">
-            Forget Password
-          </button>
-       
+
+        <button className={styles.registerBtn} type="submit">
+          Forget Password
+        </button>
       </form>
     </div>
   );

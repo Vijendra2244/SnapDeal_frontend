@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ImageContext } from "../context/UserImageContext";
 
+
 function Register() {
   const navigate = useNavigate()
   const {userImage,setUserImage} = useContext(ImageContext)
@@ -14,7 +15,7 @@ function Register() {
     mobilenumber: "",
     avatar: null,
   });
-
+  const navigate = useNavigate()
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
@@ -53,7 +54,9 @@ function Register() {
            navigate("/")
       }
     
-     
+
+        
+      
 
       setUserDetails({
         username: "",
@@ -63,7 +66,9 @@ function Register() {
         avatar: null,
       });
     } catch (error) {
-      console.error("Registration failed:", error);
+      if (error.response && error.response.data.status === "fail") {
+        alert("All field are required!");
+      }
     }
   };
 

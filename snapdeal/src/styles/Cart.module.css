@@ -1,7 +1,5 @@
 .cartContainer {
   display: flex;
-  gap: 0.5rem;
-  color: var(--normalColor);
 }
 
 .cartIcon {
@@ -15,9 +13,16 @@
 .cartContainer:hover {
   cursor: pointer;
 }
+.linkKart {
+  text-decoration: none;
+  color: var(--normalColor);
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
 
-@media screen  and (max-width:1200px){
-    .cartContainer{
-        display: none;
-    }
+@media screen and (max-width: 1200px) {
+  .cartContainer {
+    display: none;
+  }
 }

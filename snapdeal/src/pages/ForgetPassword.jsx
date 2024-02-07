@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import styles from "../styles/Login.module.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 function ForgetPassword() {
   const [userDetails, setUserDetails] = useState({
     email: "",
   });
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,12 +32,18 @@ function ForgetPassword() {
       );
 
       console.log(res);
-
+     if(res.data.status=="success"){
+      
+      navigate("/otpverification")
+      alert("Otp send on your email and please enter your mail and otp here")
+     }
       setUserDetails({
         email: "",
       });
     } catch (error) {
-      console.error("Reset  failed:", error);
+      if (error.response && error.response.data.status === "fail") {
+        alert("Otp not send please enter valid email which is verified on gmail.com");
+      }
     }
   };
 
