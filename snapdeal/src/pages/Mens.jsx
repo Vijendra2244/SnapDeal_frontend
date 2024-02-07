@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Mens.module.css";
 import axios from "axios";
+import {addToCartButton} from "../components/Carousel"
 
 function Mens() {
+
   const [mensData, setMensData] = useState([]);
   const fetchMensData = async () => {
     try {
@@ -27,7 +29,7 @@ function Mens() {
           </div>
           <p>{item.subtitle}</p>
           <p>${item.price}</p>
-          <button className={styles.btn}>AddToCart</button>
+          <button onClick={()=>addToCartButton(item._id)} className={styles.btn}>AddToCart</button>
         </div>
       ))}
     </div>

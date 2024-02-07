@@ -12,7 +12,7 @@
   position: absolute;
   top: 125%;
   left: 75%;
-  z-index: 111;
+  z-index: 999;
 }
 .textForNewUser {
   color: var(--normalColor);

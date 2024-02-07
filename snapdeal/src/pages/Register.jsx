@@ -3,11 +3,12 @@ import styles from "../styles/Register.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ImageContext } from "../context/UserImageContext";
-
+import { AuthContext } from "../context/AuthContext";
 
 function Register() {
-  const navigate = useNavigate()
-  const {userImage,setUserImage} = useContext(ImageContext)
+  const navigate = useNavigate();
+  const { auth, setAuth } = useContext(AuthContext);
+  const { userImage, setUserImage } = useContext(ImageContext);
   const [userDetails, setUserDetails] = useState({
     username: "",
     email: "",
@@ -47,15 +48,12 @@ function Register() {
       );
 
       console.log(res);
-      if(res.data.status=="success"){
-           alert("Registration successfully")
-           setUserImage(res.data.data.avatar)
-           navigate("/")
+      if (res.data.status == "success") {
+        alert("Registration successfully");
+        setUserImage(res.data.data.avatar);
+        setAuth(true);
+        navigate("/");
       }
-    
-
-        
-      
 
       setUserDetails({
         username: "",

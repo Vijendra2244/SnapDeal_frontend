@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Mens.module.css";
 import axios from "axios";
+import {addToCartButton} from "../components/Carousel"
 
 function Womens() {
   const [woMensData, setWoMensData] = useState([]);
@@ -18,6 +19,7 @@ function Womens() {
   useEffect(() => {
    fetchWoMensData()
   }, []);
+  
   return (
     <div className={styles.mens}>
       {woMensData.map((item, index) => (
@@ -27,7 +29,7 @@ function Womens() {
           </div>
           <p>{item.subtitle}</p>
           <p>${item.price}</p>
-          <button className={styles.btn}>AddToCart</button>
+          <button onClick={()=>addToCartButton(item._id)} className={styles.btn}>AddToCart</button>
         </div>
       ))}
     </div>

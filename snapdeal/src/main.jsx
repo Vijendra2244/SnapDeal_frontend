@@ -7,16 +7,19 @@ import Navbar from "./section/navbar/Navbar.jsx";
 import Footer from "./section/footer/Footer.jsx";
 import Header from "./section/header/Header.jsx";
 import ImageContextProvider from "./context/UserImageContext.jsx";
+import AuthContextProvider from "./context/AuthContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ImageContextProvider>
-    <BrowserRouter>
-      <Header />
-      <Navbar />
-        <App />
-      <Footer />
-    </BrowserRouter>
-    </ImageContextProvider>
+    <AuthContextProvider>
+      <ImageContextProvider>
+        <BrowserRouter>
+          <Header />
+          <Navbar />
+          <App />
+          <Footer />
+        </BrowserRouter>
+      </ImageContextProvider>
+    </AuthContextProvider>
   </React.StrictMode>
 );

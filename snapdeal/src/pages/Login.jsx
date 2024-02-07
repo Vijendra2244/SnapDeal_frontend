@@ -4,9 +4,11 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ImageContext } from "../context/UserImageContext";
+import { AuthContext } from "../context/AuthContext";
 
 function Login() {
   const { userImage, setUserImage } = useContext(ImageContext);
+  const { auth, setAuth } = useContext(AuthContext);
   const [userDetails, setUserDetails] = useState({
     email: "",
     password: "",
@@ -37,6 +39,7 @@ function Login() {
       if (res.data.status == "success") {
         alert("Login successfully");
         setUserImage(res.data.avatar);
+        setAuth(true);
         navigate("/");
       }
       setUserDetails({

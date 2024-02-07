@@ -3,6 +3,7 @@ import styles from "../styles/Carousel.module.css";
 import { useRef, useEffect } from "react";
 import { RxChevronLeft, RxChevronRight } from "react-icons/rx";
 import axios from "axios";
+import {addToCartButton} from "./Carousel"
 
 function NewCarousel() {
   const [product, setProduct] = useState([]);
@@ -48,7 +49,7 @@ function NewCarousel() {
             <img className={styles.img} src={item.productImage} alt="" />
             <p className={styles.title}>{item.subtitle.slice(0,15)}</p>
             <p className={styles.price}>${item.price}</p>
-            <button className={styles.addToCart}>Add To Cart</button>
+            <button onClick={()=>addToCartButton(item._id)} className={styles.addToCart}>Add To Cart</button>
           </div>
         ))}
       </div>

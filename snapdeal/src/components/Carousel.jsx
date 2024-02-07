@@ -4,6 +4,25 @@ import { useRef, useEffect } from "react";
 import { RxChevronLeft, RxChevronRight } from "react-icons/rx";
 import axios from "axios";
 
+export const addToCartButton = async (productId) => {
+  try {
+    const res = await axios.post(
+      "https://snapdealbackend-production.up.railway.app/carts/addToCart/",
+      { productId },
+      { withCredentials: true }
+    );
+    console.log(res);
+    if (res.data.status == "success") {
+      alert("Item added successfully in your cart");
+    }
+  } catch (error) {
+    console.log(error);
+    if (error.response.data.status == "fail") {
+      alert("Getting error while adding item in cart");
+    }
+  }
+};
+
 function Carousel() {
   const [product, setProduct] = useState([]);
   const mainDivRef = useRef();
@@ -21,13 +40,14 @@ function Carousel() {
       behavior: "smooth",
     });
   };
+
   const fetchData = async () => {
     try {
       const productData = await axios.get(
         "https://snapdealbackend-production.up.railway.app/products/",
         { withCredentials: true }
       );
-   
+
       setProduct(productData.data.data.products);
     } catch (error) {
       console.error("Error fetching product data", error);
@@ -48,7 +68,12 @@ function Carousel() {
             <img className={styles.img} src={item.productImage} alt="" />
             <p className={styles.title}>{item.subtitle}</p>
             <p className={styles.price}>${item.price}</p>
-            <button className={styles.addToCart}>Add To Cart</button>
+            <button
+              onClick={() => addToCartButton(item._id)}
+              className={styles.addToCart}
+            >
+              Add To Cart
+            </button>
           </div>
         ))}
       </div>

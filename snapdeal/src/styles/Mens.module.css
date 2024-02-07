@@ -40,6 +40,10 @@
 .btn:hover{
   cursor: pointer;
 }
+.short{
+  font-size: 0.9rem;
+  color: var(--btnColor);
+}
 @media screen and (max-width:900px) {
   .mens{
     display: grid;
