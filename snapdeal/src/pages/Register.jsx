@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "../styles/Register.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { ImageContext } from "../context/UserImageContext";
 
 function Register() {
+  const navigate = useNavigate()
+  const {userImage,setUserImage} = useContext(ImageContext)
   const [userDetails, setUserDetails] = useState({
     username: "",
     email: "",
@@ -43,6 +47,13 @@ function Register() {
       );
 
       console.log(res);
+      if(res.data.status=="success"){
+           alert("Registration successfully")
+           setUserImage(res.data.data.avatar)
+           navigate("/")
+      }
+    
+     
 
       setUserDetails({
         username: "",
