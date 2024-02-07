@@ -4,6 +4,13 @@ import CompanyLogo from "../../components/CompanyLogo";
 import SearchBar from "../../components/SearchBar";
 import Cart from "../../components/Cart";
 import SignIn from "../../components/SignIn";
+
+import {ImageContext} from "../../context/UserImageContext"
+
+
+function Navbar() {
+  const { userImage, setUserImage } = useContext(ImageContext);
+
 import Logout from "../../pages/Logout";
 
 
@@ -17,7 +24,11 @@ function Navbar() {
         <SearchBar />
         <Cart />
         <SignIn />
+
+        <img title="user-image" className={styles.userImage} src={userImage} alt="userimage" />
+
        <Logout/>
+
       </nav>
     </div>
   );
