@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "../styles/Login.module.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { ImageContext } from "../context/UserImageContext";
 
 function Login() {
+  const { userImage, setUserImage } = useContext(ImageContext);
   const [userDetails, setUserDetails] = useState({
     email: "",
     password: "",
@@ -34,6 +36,7 @@ function Login() {
 
       if (res.data.status == "success") {
         alert("Login successfully");
+        setUserImage(res.data.avatar);
         navigate("/");
       }
       setUserDetails({
@@ -83,7 +86,9 @@ function Login() {
         <button className={styles.registerBtn} type="submit">
           Login
         </button>
-        <Link  className={styles.linkPass} to="/register">If you are new user please register first</Link>
+        <Link className={styles.linkPass} to="/register">
+          If you are new user please register first
+        </Link>
       </form>
     </div>
   );

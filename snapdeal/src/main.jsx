@@ -10,13 +10,13 @@ import ImageContextProvider from "./context/UserImageContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-      <ImageContextProvider>
+    <ImageContextProvider>
     <BrowserRouter>
       <Header />
       <Navbar />
         <App />
       <Footer />
     </BrowserRouter>
-      </ImageContextProvider>
+    </ImageContextProvider>
   </React.StrictMode>
 );

@@ -27,7 +27,7 @@ function Carousel() {
         "https://snapdealbackend-production.up.railway.app/products/",
         { withCredentials: true }
       );
-      console.log(productData)
+   
       setProduct(productData.data.data.products);
     } catch (error) {
       console.error("Error fetching product data", error);

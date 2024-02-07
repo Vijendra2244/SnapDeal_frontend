@@ -15,7 +15,6 @@ function Register() {
     mobilenumber: "",
     avatar: null,
   });
-  const navigate = useNavigate()
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
