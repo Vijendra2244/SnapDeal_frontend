@@ -2,13 +2,12 @@ import React, { useContext, useState } from "react";
 import styles from "../styles/Register.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { ImageContext } from "../context/UserImageContext";
 import { AuthContext } from "../context/AuthContext";
 
 function Register() {
   const navigate = useNavigate();
   const { auth, setAuth } = useContext(AuthContext);
-  const { userImage, setUserImage } = useContext(ImageContext);
+
   const [userDetails, setUserDetails] = useState({
     username: "",
     email: "",
@@ -29,6 +28,13 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    const strongPasswordRegex =/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!strongPasswordRegex.test(userDetails.password)) {
+      alert(
+        "Password must have at least one uppercase character, one number, one special character, and be at least 8 characters long."
+      );
+    }
 
     const formData = new FormData();
     formData.append("username", userDetails.username);
@@ -47,12 +53,13 @@ function Register() {
         }
       );
 
+    
+      
       console.log(res);
       if (res.data.status == "success") {
         alert("Registration successfully");
-        setUserImage(res.data.data.avatar);
         setAuth(true);
-        navigate("/");
+        navigate("/login");
       }
 
       setUserDetails({

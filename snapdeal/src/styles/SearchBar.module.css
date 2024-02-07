@@ -49,7 +49,10 @@
 @media screen and (max-width:500px) {
    .searchContainer{
       width: 85%;
+      order: 3;
+      margin: auto;
    }
+
 }
 @media screen and (max-width:370px) {
    .searchContainer{

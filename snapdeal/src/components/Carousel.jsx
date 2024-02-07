@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "../styles/Carousel.module.css";
 import { useRef, useEffect } from "react";
 import { RxChevronLeft, RxChevronRight } from "react-icons/rx";
 import axios from "axios";
+import {AuthContext} from  "../context/AuthContext"
 
 export const addToCartButton = async (productId) => {
   try {
@@ -24,6 +25,7 @@ export const addToCartButton = async (productId) => {
 };
 
 function Carousel() {
+  const {auth,setAuth} = useContext(AuthContext)
   const [product, setProduct] = useState([]);
   const mainDivRef = useRef();
   const slideLeft = () => {
@@ -69,10 +71,14 @@ function Carousel() {
             <p className={styles.title}>{item.subtitle}</p>
             <p className={styles.price}>${item.price}</p>
             <button
-              onClick={() => addToCartButton(item._id)}
+              onClick={() => {
+                auth
+                  ? addToCartButton(item._id)
+                  : alert("You need to login first");
+              }}
               className={styles.addToCart}
             >
-              Add To Cart
+              AddToCart
             </button>
           </div>
         ))}

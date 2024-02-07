@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "../styles/Mens.module.css";
 import axios from "axios";
 import {addToCartButton} from "../components/Carousel"
+import { AuthContext } from "../context/AuthContext";
 
 function Electronics() {
+  const {auth,setAuth} = useContext(AuthContext)
   const [electro,setElectro] = useState([]);
   const fetchElectronicsData = async () => {
     try {
@@ -20,6 +22,8 @@ function Electronics() {
    fetchElectronicsData()
   }, []);
   return (
+    <>
+     <h1 className={styles.heading}>Electronics</h1>
     <div className={styles.mens}>
       {electro.map((item, index) => (
         <div className={styles.mainCard} key={index}>
@@ -28,10 +32,20 @@ function Electronics() {
           </div>
           <p>{item.subtitle}</p>
           <p>${item.price}</p>
-          <button onClick={()=>addToCartButton(item._id)} className={styles.btn}>AddToCart</button>
+          <button
+              onClick={() => {
+                auth
+                  ? addToCartButton(item._id)
+                  : alert("You need to login first");
+              }}
+              className={styles.btn}
+            >
+              AddToCart
+            </button>
         </div>
       ))}
     </div>
+      </>
   );
 }
 

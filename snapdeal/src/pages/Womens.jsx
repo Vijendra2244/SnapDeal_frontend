@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "../styles/Mens.module.css";
 import axios from "axios";
-import {addToCartButton} from "../components/Carousel"
+import { addToCartButton } from "../components/Carousel";
+import { AuthContext } from "../context/AuthContext";
 
 function Womens() {
+  const {auth,setAuth} =useContext(AuthContext)
   const [woMensData, setWoMensData] = useState([]);
   const fetchWoMensData = async () => {
     try {
@@ -17,22 +19,34 @@ function Womens() {
     }
   };
   useEffect(() => {
-   fetchWoMensData()
+    fetchWoMensData();
   }, []);
-  
+
   return (
-    <div className={styles.mens}>
-      {woMensData.map((item, index) => (
-        <div className={styles.mainCard} key={index}>
-          <div className={styles.imageContainer}>
-            <img className={styles.img} src={item.productImage} alt="" />
+    <>
+      <h1 className={styles.heading}>Women's Fashions</h1>
+      <div className={styles.mens}>
+        {woMensData.map((item, index) => (
+          <div className={styles.mainCard} key={index}>
+            <div className={styles.imageContainer}>
+              <img className={styles.img} src={item.productImage} alt="" />
+            </div>
+            <p>{item.subtitle}</p>
+            <p>${item.price}</p>
+            <button
+              onClick={() => {
+                auth
+                  ? addToCartButton(item._id)
+                  : alert("You need to login first");
+              }}
+              className={styles.btn}
+            >
+              AddToCart
+            </button>
           </div>
-          <p>{item.subtitle}</p>
-          <p>${item.price}</p>
-          <button onClick={()=>addToCartButton(item._id)} className={styles.btn}>AddToCart</button>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 }
 

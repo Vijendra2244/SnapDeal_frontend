@@ -18,11 +18,32 @@
   height: 50px;
   width: 50px;
 }
+@media screen  and (max-width:640px){
+  .userImage{
+    height: 30px;
+    width: 30px;
+    margin-left: 0.5rem;
+  }
+}
+
+
+@media screen  and (max-width:550px){
+  .userImage{
+    height: 30px;
+    width: 30px;
+    margin-left: 0.5rem;
+  }
+}
 
 @media screen and (max-width: 500px) {
   .navbar {
     display: flex;
-    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+   gap: 0.4rem;
+  }
+  .navbarContainer{
+    height: 120px;
   }
 }
 

@@ -29,15 +29,16 @@
 @media screen and (max-width:600px) {
   .logoContainer{
     width: 21%;
+    margin-left: -0.5rem;
   }
 }
 @media screen and (max-width:400px) {
   .logoContainer{
-    width: 90%;
+    width: 50%;
   }
 }
 @media screen and (max-width:370px) {
   .logoContainer{
-    width: 65%;
+    width: 40%;
   }
 }
