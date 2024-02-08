@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import styles from "../styles/Login.module.css";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 
 function ResetPassword() {
+  const navigate = useNavigate();
   const [userDetails, setUserDetails] = useState({
     oldPassword: "",
     newPassword: "",
@@ -32,7 +33,10 @@ function ResetPassword() {
       );
 
       console.log(res);
-
+      if (res.data.status == "success") {
+        alert("Your password reset successfully");
+        navigate("/login");
+      }
       setUserDetails({
         email: "",
         oldPassword: "",
