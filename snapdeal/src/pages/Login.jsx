@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ImageContext } from "../context/UserImageContext";
 import { AuthContext } from "../context/AuthContext";
+import Google from "./Google";
 
 function Login() {
   const { userImage, setUserImage } = useContext(ImageContext);
@@ -37,9 +38,9 @@ function Login() {
       );
 
       if (res.data.status == "success") {
-        alert("Login successfully");
         setUserImage(res.data.avatar);
         setAuth(true);
+        localStorage.setItem("userImage", res.data.avatar);
         navigate("/");
       }
       setUserDetails({
@@ -54,46 +55,49 @@ function Login() {
   };
 
   return (
-    <div className={styles.mainRegister}>
-      <p className={styles.heading}>Login / SignIn</p>
-      <form onSubmit={handleSubmit} className={styles.formData}>
-        <label htmlFor="email">Enter your email</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          onChange={handleChange}
-          value={userDetails.email}
-          required
-          className={styles.input}
-        />
-        <br />
-        <label htmlFor="password">Enter your password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          onChange={handleChange}
-          value={userDetails.password}
-          required
-          className={styles.input}
-        />
-        <div className={styles.passwordOption}>
-          <Link className={styles.linkPass} to="/resetpassword">
-            <p className={styles.passwordNew}>Reset Password</p>
+    <>
+      <div className={styles.mainRegister}>
+        <p className={styles.heading}>Login / SignIn</p>
+        <form onSubmit={handleSubmit} className={styles.formData}>
+          <label htmlFor="email">Enter your email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            onChange={handleChange}
+            value={userDetails.email}
+            required
+            className={styles.input}
+          />
+          <br />
+          <label htmlFor="password">Enter your password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            onChange={handleChange}
+            value={userDetails.password}
+            required
+            className={styles.input}
+          />
+          <div className={styles.passwordOption}>
+            <Link className={styles.linkPass} to="/resetpassword">
+              <p className={styles.passwordNew}>Reset Password</p>
+            </Link>
+            <Link className={styles.linkPass} to="/forgetpassword">
+              <p className={styles.passwordNew}>Forget Password</p>
+            </Link>
+          </div>
+          <button className={styles.registerBtn} type="submit">
+            Login
+          </button>
+          <Link className={styles.linkPass} to="/register">
+            If you are new user please register first
           </Link>
-          <Link className={styles.linkPass} to="/forgetpassword">
-            <p className={styles.passwordNew}>Forget Password</p>
-          </Link>
-        </div>
-        <button className={styles.registerBtn} type="submit">
-          Login
-        </button>
-        <Link className={styles.linkPass} to="/register">
-          If you are new user please register first
-        </Link>
-      </form>
-    </div>
+        </form>
+        <Google />
+      </div>
+    </>
   );
 }
 

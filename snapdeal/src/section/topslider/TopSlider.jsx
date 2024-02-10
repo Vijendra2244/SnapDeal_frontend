@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Slider from "../../components/Slider";
 import styles from "../../styles/TopSlider.module.css";
 import Aside from "../../components/Aside";
@@ -13,7 +13,7 @@ function TopSlider() {
         <Slider />
       </div>
       <NewCarousel />
-      <Poster />
+      <Poster />   
     </>
   );
 }

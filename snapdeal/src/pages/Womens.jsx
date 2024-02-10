@@ -3,6 +3,7 @@ import styles from "../styles/Mens.module.css";
 import axios from "axios";
 import { addToCartButton } from "../components/Carousel";
 import { AuthContext } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 function Womens() {
   const {auth,setAuth} =useContext(AuthContext)
@@ -28,9 +29,11 @@ function Womens() {
       <div className={styles.mens}>
         {woMensData.map((item, index) => (
           <div className={styles.mainCard} key={index}>
+            <Link to={`/card/${item._id}`}>
             <div className={styles.imageContainer}>
               <img className={styles.img} src={item.productImage} alt="" />
             </div>
+              </Link>
             <p>{item.subtitle}</p>
             <p>${item.price}</p>
             <button
@@ -38,9 +41,9 @@ function Womens() {
                 auth
                   ? addToCartButton(item._id)
                   : alert("You need to login first");
-              }}
-              className={styles.btn}
-            >
+                }}
+                className={styles.btn}
+                >
               AddToCart
             </button>
           </div>

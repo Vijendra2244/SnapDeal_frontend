@@ -14,6 +14,7 @@ import OtpResetPass from "../pages/OtpResetPass";
 import AddToCart from "../pages/AddToCart";
 import Jewelry from "../pages/Jewelry";
 import Mobiles from "../pages/Mobiles";
+import SingleCard from "../pages/SingleCard";
 
 function AllRoutes() {
   return (
@@ -26,13 +27,14 @@ function AllRoutes() {
         <Route path="/jewelry" element={<Jewelry />} />
         <Route path="/accessories" element={<Accessories />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/forgetpassword" element={<ForgetPassword />} />
         <Route path="/otpverification" element={<OtpVerify />} />
         <Route path="/forgetbyotp" element={<OtpResetPass />} />
-        <Route path="/addtocart" element={<AddToCart />} />
         <Route path="/mobiles" element={<Mobiles />} />
+        <Route path="/card/:id" element={<SingleCard/>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/addtocart" element={<AddToCart />} />
       </Routes>
     </>
   );

@@ -5,6 +5,7 @@ import { RxChevronLeft, RxChevronRight } from "react-icons/rx";
 import axios from "axios";
 import {addToCartButton} from "./Carousel"
 import { AuthContext } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 function NewCarousel() {
   const {auth,setAuth} =useContext(AuthContext)
@@ -48,7 +49,10 @@ function NewCarousel() {
       <div className={styles.mainDiv} ref={mainDivRef}>
         {product.slice(21, 40).map((item, index) => (
           <div className={styles.card} key={index}>
+            <Link to={`/card/${item._id}`}>
+
             <img className={styles.img} src={item.productImage} alt="" />
+            </Link>
             <p className={styles.title}>{item.subtitle.slice(0,15)}</p>
             <p className={styles.price}>${item.price}</p>
             <button

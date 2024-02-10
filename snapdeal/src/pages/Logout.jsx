@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/Logout.module.css";
 import { ImageContext } from "../context/UserImageContext.jsx";
+import { AuthContext } from "../context/AuthContext.jsx";
 
 export const logoutUser = async () => {
   try {
@@ -17,7 +18,6 @@ export const logoutUser = async () => {
     );
 
     if (res.data.status === "success") {
-    
       return { success: true, message: "Logout successfully" };
     }
   } catch (error) {
@@ -36,17 +36,17 @@ export const logoutUser = async () => {
 
 function Logout() {
   const { userImage, setUserImage } = useContext(ImageContext);
+  const { auth, setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     const logoutResult = await logoutUser();
     if (logoutResult.success) {
-
-      alert(logoutResult.message);
-      setUserImage("")
-      navigate("/login");
-    } else {
-      alert(logoutResult.message);
+      setUserImage("");
+      localStorage.removeItem("userImage");
+      alert("User logged out");
+      setAuth(false);
+      navigate("/");
     }
   };
 

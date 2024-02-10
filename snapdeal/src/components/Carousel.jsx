@@ -4,8 +4,10 @@ import { useRef, useEffect } from "react";
 import { RxChevronLeft, RxChevronRight } from "react-icons/rx";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 export const addToCartButton = async (productId) => {
+  
   try {
     const res = await axios.post(
       "https://snapdealbackend-production.up.railway.app/carts/addToCart/",
@@ -16,6 +18,7 @@ export const addToCartButton = async (productId) => {
     if (res.data.status == "success") {
       alert("Item added successfully in your cart");
     }
+    
   } catch (error) {
     console.log(error);
     if (error.response.data.status == "fail") {
@@ -68,7 +71,10 @@ function Carousel() {
         <div className={styles.mainDiv} ref={mainDivRef}>
           {product.slice(0, 20).map((item, index) => (
             <div className={styles.card} key={index}>
+              <Link to={`/card/${item._id}`}>
+
               <img className={styles.img} src={item.productImage} alt="" />
+              </Link>
               <p className={styles.title}>{item.subtitle}</p>
               <p className={styles.price}>${item.price}</p>
               <button

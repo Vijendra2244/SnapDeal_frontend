@@ -1,0 +1,38 @@
+.toastContainer {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+  }
+  
+  .toast {
+    background-color: green;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    animation: slideIn 0.5s forwards, fadeout 0.5s 15s forwards;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 0.9;
+    }
+  }
+  
+  @keyframes fadeout {
+    from {
+      opacity: 0.9;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  

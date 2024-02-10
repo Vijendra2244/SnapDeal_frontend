@@ -1,0 +1,65 @@
+.main {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  transition: 0.5s;
+  border-radius: 6px;
+  margin: 2rem auto;
+  display: flex;
+  width: 50%;
+  padding: 2rem;
+  gap: 1rem;
+}
+.btn {
+  background-color: var(--btnColor);
+  padding: 0.7rem;
+  border-radius: 4px;
+  color: var(--normalColor);
+  border: none;
+  outline: none;
+}
+.btn:hover {
+  cursor: pointer;
+}
+.image {
+  height: 200px;
+  width: 200px;
+}
+.subtitle,
+.price,
+.short {
+  margin-bottom: 0.5rem;
+}
+
+.loading {
+  color: var(--btnColor);
+  font-size: 1.3rem;
+}
+
+@media screen and (max-width: 900px) {
+  .main {
+    width: 70%;
+    margin: 2rem auto;
+  }
+}
+@media screen and (max-width: 760px) {
+  .main {
+    width: 80%;
+    margin: 2rem auto;
+  }
+}
+@media screen and (max-width: 640px) {
+  .main {
+    width: 90%;
+    margin: 2rem auto;
+  }
+}
+@media screen and (max-width: 450px) {
+  .main {
+    width: 95%;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+  }
+}

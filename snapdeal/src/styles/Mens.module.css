@@ -19,28 +19,26 @@
   border-radius: 4px;
   padding: 1rem;
   line-height: 25px;
-  border: 1px solid grey;
+  box-shadow: rgba(100, 100, 111, 0.6) 0px 7px 29px 0px;
   height: 100%;
   width: 100%;
 }
 .mainCard:hover {
-  box-shadow: rgba(100, 100, 111, 0.6) 0px 7px 29px 0px;
   cursor: pointer;
   border-radius: 6px;
 }
-.btn{
+.btn {
   background-color: var(--btnColor);
   padding: 0.7rem;
   border-radius: 4px;
   color: var(--normalColor);
   border: none;
   outline: none;
-
 }
-.btn:hover{
+.btn:hover {
   cursor: pointer;
 }
-.btnProceed{
+.btnProceed {
   background-color: var(--btnColor);
   padding: 0.7rem;
   border-radius: 4px;
@@ -48,35 +46,37 @@
   border: none;
   outline: none;
   margin-left: 0.4rem;
-
 }
-.btnProceed:hover{
+.btnProceed:hover {
   cursor: pointer;
 }
-.short{
+.short {
   font-size: 0.9rem;
   color: var(--btnColor);
 }
-.heading{
+.heading {
   color: var(--btnColor);
   margin: 0.5rem 0;
   text-align: center;
 }
-@media screen and (max-width:900px) {
-  .mens{
+.cartHeading {
+  color: var(--btnColor);
+}
+@media screen and (max-width: 900px) {
+  .mens {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
-@media screen and (max-width:768px) {
-  .mens{
+@media screen and (max-width: 768px) {
+  .mens {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
-@media screen and (max-width:640px) {
-  .mens{
+@media screen and (max-width: 640px) {
+  .mens {
     display: grid;
-    grid-template-columns: repeat(1,1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 }

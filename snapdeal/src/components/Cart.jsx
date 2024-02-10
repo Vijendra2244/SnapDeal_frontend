@@ -8,11 +8,17 @@ function Cart() {
   const { auth, setAuth } = useContext(AuthContext);
   return (
     <div className={styles.cartContainer}>
-       <Link className={styles.linkKart} to="/addtocart">
+      {auth ? (
+        <Link className={styles.linkKart} to="/addtocart">
           <p className={styles.cartText}> Cart</p>
           <IoCartOutline className={styles.cartIcon}></IoCartOutline>
         </Link>
-      
+      ) : (
+        <Link className={styles.linkKart} to="/">
+          <p className={styles.cartText}> Cart</p>
+          <IoCartOutline className={styles.cartIcon}></IoCartOutline>
+        </Link>
+      )}
     </div>
   );
 }

@@ -4,8 +4,10 @@ import styles from "../styles/Mens.module.css";
 import { ModalContext } from "../context/ModalContext";
 import ProceedToBuy from "../components/ProceedToBuy";
 
+
 function AddToCart() {
   const [cartData, setCartData] = useState([]);
+
   const { modal, setModal } = useContext(ModalContext);
   const fetchCartData = async () => {
     try {
@@ -13,7 +15,7 @@ function AddToCart() {
         `https://snapdealbackend-production.up.railway.app/carts/`,
         { withCredentials: true }
       );
-      console.log(res);
+
       setCartData(res.data.userProduct);
     } catch (error) {
       console.log(error);
@@ -51,29 +53,33 @@ function AddToCart() {
   return (
     <>
       <div className={styles.mens}>
-        {cartData.map((item, index) => (
-          <div className={styles.mainCard} key={index}>
-            <img
-              className={styles.img}
-              src={item.productInfo.productImage}
-              alt="product-image"
-            />
-            <p className={styles.short}>
-              {item.productInfo.shortDescription.slice(0, 70) + "..."}
-            </p>
-            <p>{item.productInfo.subtitle}</p>
-            <p>${item.productInfo.price}</p>
-            <button
-              onClick={() => deleteCartInCartSection(item.productInfo._id)}
-              className={styles.btn}
-            >
-              Delete
-            </button>
-            <button onClick={openModal} className={styles.btnProceed}>
-              Proceed To Buy
-            </button>
-          </div>
-        ))}
+        {cartData.length == 0 ? (
+          <h1 className={styles.cartHeading}>Your cart is empty</h1>
+        ) : (
+          cartData.map((item, index) => (
+            <div className={styles.mainCard} key={index}>
+              <img
+                className={styles.img}
+                src={item.productInfo.productImage}
+                alt="product-image"
+              />
+              <p className={styles.short}>
+                {item.productInfo.shortDescription.slice(0, 70) + "..."}
+              </p>
+              <p>{item.productInfo.subtitle}</p>
+              <p>${item.productInfo.price}</p>
+              <button
+                onClick={() => deleteCartInCartSection(item.productInfo._id)}
+                className={styles.btn}
+              >
+                Delete
+              </button>
+              <button onClick={openModal} className={styles.btnProceed}>
+                Proceed To Buy
+              </button>
+            </div>
+          ))
+        )}
       </div>
       {modal && <ProceedToBuy />}
     </>

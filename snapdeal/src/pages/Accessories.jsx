@@ -3,6 +3,7 @@ import styles from "../styles/Mens.module.css";
 import axios from "axios";
 import { addToCartButton } from "../components/Carousel";
 import { AuthContext } from "../context/AuthContext";
+import {Link} from "react-router-dom"
 
 function Accessories() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -27,9 +28,12 @@ function Accessories() {
       <div className={styles.mens}>
         {acc.map((item, index) => (
           <div className={styles.mainCard} key={index}>
+            <Link to={`/card/${item._id}`}>
+
             <div className={styles.imageContainer}>
               <img className={styles.img} src={item.productImage} alt="" />
             </div>
+            </Link>
             <p>{item.subtitle}</p>
             <p>${item.price}</p>
             <button
