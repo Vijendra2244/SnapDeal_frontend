@@ -1,38 +1,35 @@
-.toastContainer {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 9999;
+.successToast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50;
+  color: white;
+  padding: 16px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  animation: bounce 0.5s, slideIn 0.5s forwards, fadeOut 0.5s 5s forwards;
+}
+
+.toastMessage {
+  font-size: 16px;
+}
+
+@keyframes slideIn {
+  from {
+    top: -100px;
   }
-  
-  .toast {
-    background-color: green;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  to {
+    top: 20px;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
     opacity: 0;
-    animation: slideIn 0.5s forwards, fadeout 0.5s 15s forwards;
   }
-  
-  @keyframes slideIn {
-    from {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 0.9;
-    }
-  }
-  
-  @keyframes fadeout {
-    from {
-      opacity: 0.9;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-  
+}

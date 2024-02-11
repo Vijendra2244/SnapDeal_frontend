@@ -8,6 +8,7 @@ import {Link} from "react-router-dom"
 function Accessories() {
   const { auth, setAuth } = useContext(AuthContext);
   const [acc, setAcc] = useState([]);
+  const [sortOrder, setSortOrder] = useState("");
   const fetchAccData = async () => {
     try {
       const res = await axios.get(
@@ -22,9 +23,27 @@ function Accessories() {
   useEffect(() => {
     fetchAccData();
   }, []);
+  const handleSort = (order) => {
+    const sortedData = [...acc];
+    if (order === "asc") {
+      sortedData.sort((a, b) => a.price - b.price);
+    } else if (order === "desc") {
+      sortedData.sort((a, b) => b.price - a.price);
+    }
+    setAcc(sortedData);
+    setSortOrder(order);
+  };
   return (
     <>
       <h1 className={styles.heading}>Accessories</h1>
+      <div className={styles.sort}>
+        <button className={styles.btn} onClick={() => handleSort("asc")}>
+          Sort by Price Low to High
+        </button>
+        <button className={styles.btn} onClick={() => handleSort("desc")}>
+          Sort by Price High to Low
+        </button>
+      </div>
       <div className={styles.mens}>
         {acc.map((item, index) => (
           <div className={styles.mainCard} key={index}>

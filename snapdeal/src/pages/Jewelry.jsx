@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 function Jewelry() {
   const { auth, setAuth } = useContext(AuthContext);
   const [jewelry, setJewelry] = useState([]);
+  const [sortOrder, setSortOrder] = useState("");
   const fetchJewelryData = async () => {
     try {
       const res = await axios.get(
@@ -22,9 +23,27 @@ function Jewelry() {
   useEffect(() => {
     fetchJewelryData();
   }, []);
+  const handleSort = (order) => {
+    const sortedData = [...jewelry];
+    if (order === "asc") {
+      sortedData.sort((a, b) => a.price - b.price);
+    } else if (order === "desc") {
+      sortedData.sort((a, b) => b.price - a.price);
+    }
+    setJewelry(sortedData);
+    setSortOrder(order);
+  };
   return (
     <>
       <h1 className={styles.heading}>Jewelry</h1>
+      <div className={styles.sort}>
+        <button className={styles.btn} onClick={() => handleSort("asc")}>
+          Sort by Price Low to High
+        </button>
+        <button className={styles.btn} onClick={() => handleSort("desc")}>
+          Sort by Price High to Low
+        </button>
+      </div>
       <div className={styles.mens}>
         {jewelry.map((item, index) => (
           <div className={styles.mainCard} key={index}>

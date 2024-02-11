@@ -1,14 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "../styles/Mens.module.css";
-import { ModalContext } from "../context/ModalContext";
-import ProceedToBuy from "../components/ProceedToBuy";
-
 
 function AddToCart() {
   const [cartData, setCartData] = useState([]);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-  const { modal, setModal } = useContext(ModalContext);
   const fetchCartData = async () => {
     try {
       const res = await axios.get(
@@ -47,9 +46,18 @@ function AddToCart() {
     fetchCartData();
   }, []);
 
-  const openModal = () => {
-    setModal(true);
+  const handlePaymentConfirm = () => {
+    setShowPaymentModal(false);
+    setShowLoader(true);
+    setTimeout(() => {
+      setShowLoader(false);
+      setShowSuccessMessage(true);
+      setTimeout(() => {
+        setShowSuccessMessage(false);
+      }, 2000); 
+    }, Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000); 
   };
+
   return (
     <>
       <div className={styles.mens}>
@@ -74,14 +82,72 @@ function AddToCart() {
               >
                 Delete
               </button>
-              <button onClick={openModal} className={styles.btnProceed}>
+              <button
+                onClick={() => setShowPaymentModal(true)}
+                className={styles.btnProceed}
+              >
                 Proceed To Buy
               </button>
             </div>
           ))
         )}
       </div>
-      {modal && <ProceedToBuy />}
+
+      {/* Payment Modal */}
+      {showPaymentModal && (
+        <div className={styles.paymentModal}>
+          <p className={styles.productsDetails}>Products Details</p>
+          <ul>
+            {cartData.map((item, index) => (
+              <li className={styles.productsDetails} key={index}>
+                {item.productInfo.shortDescription}
+                <h3>Total Amount:${item.productInfo.price}</h3>
+              </li>
+            ))}
+          </ul>
+          <button className={styles.btnProceed} onClick={handlePaymentConfirm}>
+            Confirm Payment
+          </button>
+          <button
+            className={styles.btnProceed}
+            onClick={() => setShowPaymentModal(false)}
+          >
+            Cancel
+          </button>
+        </div>
+      )}
+
+      {/* Loader */}
+      {showLoader && (
+        <div className={styles.loader}>
+          <div className={styles.loaderContent}></div>
+        </div>
+      )}
+
+      {/* Success Message Modal */}
+      {showSuccessMessage && (
+        <div className={styles.successPopup}>
+          <div className={styles.successMessage}>
+            <div className={styles.successIcon}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="feather feather-check-circle"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="16 12 12 8 8 12"></polyline>
+                <line x1="12" y1="16" x2="12" y2="8"></line>
+              </svg>
+            </div>
+            <p>Payment Successful!</p>
+          </div>
+        </div>
+      )}
     </>
   );
 }
