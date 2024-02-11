@@ -30,14 +30,17 @@ function SingleCard() {
   }, [id]);
 
   return (
-    <div style={{ marginTop: "-15px", position: "relative" }}>
+    <div style={{ marginTop: "0", position: "relative" }}>
       {cardDetails && Object.keys(cardDetails).length > 0 ? (
         <div className={styles.main}>
+          <div className={styles.img}>
+
           <img
             className={styles.image}
             src={cardDetails.productImage}
             alt="singleImage"
-          />
+            />
+            </div>
           <div>
             <p className={styles.subtitle}>{cardDetails.subtitle}</p>
             <p className={styles.price}>${cardDetails.price}</p>

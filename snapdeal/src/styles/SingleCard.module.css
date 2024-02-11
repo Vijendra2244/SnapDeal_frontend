@@ -2,12 +2,16 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   transition: 0.5s;
   border-radius: 6px;
-  margin: 2rem auto;
   display: flex;
   width: 50%;
-  padding: 8rem;
+  padding-top: 7rem;
   gap: 1rem;
- 
+  margin: auto;
+  margin-bottom: 1rem;
+  padding-bottom: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+
 }
 .btn {
   background-color: var(--btnColor);
@@ -21,15 +25,18 @@
   cursor: pointer;
 }
 .image {
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
 }
 .subtitle,
 .price,
 .short {
   margin-bottom: 0.5rem;
 }
-
+.img{
+  width: 60%;
+}
 .loading {
   color: var(--btnColor);
   font-size: 1.3rem;
@@ -38,25 +45,22 @@
 @media screen and (max-width: 900px) {
   .main {
     width: 70%;
-    margin: 2rem auto;
   }
 }
 @media screen and (max-width: 760px) {
   .main {
     width: 80%;
-    margin: 2rem auto;
   }
 }
 @media screen and (max-width: 640px) {
   .main {
     width: 90%;
-    margin: 2rem auto;
   }
 }
 @media screen and (max-width: 450px) {
   .main {
     width: 95%;
-    margin: 2rem auto;
+   
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
