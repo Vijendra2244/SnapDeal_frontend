@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "../styles/Mens.module.css";
+import { useToast } from "@chakra-ui/react";
 
 function AddToCart() {
   const [cartData, setCartData] = useState([]);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-
+  const toast = useToast()
   const fetchCartData = async () => {
     try {
       const res = await axios.get(
@@ -19,9 +20,15 @@ function AddToCart() {
     } catch (error) {
       console.log(error);
       if (error.response.data.status == "fail") {
-        alert(
-          "You need to login first after that you will be able to access cart"
-        );
+        toast({
+          position: "bottom",
+          description: "You need to login first after that you will be able to access cart",
+          status: "warning",
+          duration: 9000,
+          isClosable: true,
+        });
+          
+        
       }
     }
   };
@@ -60,6 +67,7 @@ function AddToCart() {
 
   return (
     <>
+    <h1 className={styles.heading}></h1>
       <div className={styles.mens}>
         {cartData.length == 0 ? (
           <h1 className={styles.cartHeading}>Your cart is empty</h1>

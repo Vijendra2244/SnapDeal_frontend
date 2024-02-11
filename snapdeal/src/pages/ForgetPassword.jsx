@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "../styles/Login.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
 
 
 function ForgetPassword() {
@@ -9,6 +10,7 @@ function ForgetPassword() {
     email: "",
   });
   const navigate = useNavigate()
+  const toast  = useToast()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,21 +37,35 @@ function ForgetPassword() {
      if(res.data.status=="success"){
       
       navigate("/otpverification")
-      alert("Otp send on your email and please enter your mail and otp here")
+      toast({
+        position: "bottom",
+        description: "Otp send on your email and please enter your mail and otp here",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
      }
       setUserDetails({
         email: "",
       });
     } catch (error) {
       if (error.response && error.response.data.status === "fail") {
-        alert("Otp not send please enter valid email which is verified on gmail.com");
+        toast({
+          position: "bottom",
+          description: "Otp not send please enter valid email which is verified on gmail.com",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
+     
       }
     }
   };
 
   return (
-    <div className={styles.mainRegister}>
+    <>
       <p className={styles.heading}>Send OTP to your email</p>
+    <div className={styles.mainRegister}>
       <form onSubmit={handleSubmit} className={styles.formData}>
         <label htmlFor="email">Enter your email</label>
         <input
@@ -60,6 +76,7 @@ function ForgetPassword() {
           value={userDetails.email}
           required
           className={styles.input}
+          placeholder="Enter your email"
         />
         <br />
 
@@ -68,6 +85,7 @@ function ForgetPassword() {
         </button>
       </form>
     </div>
+    </>
   );
 }
 

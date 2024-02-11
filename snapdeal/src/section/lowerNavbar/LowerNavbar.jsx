@@ -9,22 +9,36 @@ import { logoutUser } from "../../pages/Logout";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { ImageContext } from "../../context/UserImageContext";
+import { useToast } from "@chakra-ui/react";
 
 function LowerNavbar() {
   const { auth, setAuth } = useContext(AuthContext);
   const { setUserImage } = useContext(ImageContext);
   const navigate = useNavigate();
+  const toast = useToast();
 
   const handleLogout = async () => {
     const logoutResult = await logoutUser();
     if (logoutResult.success) {
-      alert(logoutResult.message);
       setUserImage("");
       localStorage.removeItem("userImage");
       setAuth(false);
+      toast({
+        position: "bottom",
+        description: "Logout successfully",
+        status: "warning",
+        duration: 9000,
+        isClosable: true,
+      });
       navigate("/");
     } else {
-      alert(logoutResult.message);
+      toast({
+        position: "bottom",
+        description: "Error while logged out",
+        status: "warning",
+        duration: 9000,
+        isClosable: true,
+      });
     }
   };
   return (

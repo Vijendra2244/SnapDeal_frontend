@@ -5,9 +5,9 @@ import { RxChevronLeft, RxChevronRight } from "react-icons/rx";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
 
-export const addToCartButton = async (productId) => {
-  
+export const addToCartButton = async (productId, toast) => {
   try {
     const res = await axios.post(
       "https://snapdealbackend-production.up.railway.app/carts/addToCart/",
@@ -15,14 +15,25 @@ export const addToCartButton = async (productId) => {
       { withCredentials: true }
     );
     console.log(res);
-    if (res.data.status == "success") {
-      alert("Item added successfully in your cart");
+    if (res.data.status === "success") {
+      toast({
+        position: "bottom",
+        description: "Item added successfully in cart",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
     }
-    
   } catch (error) {
     console.log(error);
-    if (error.response.data.status == "fail") {
-      alert("Getting error while adding item in cart");
+    if (error.response.data.status === "fail") {
+      toast({
+        position: "bottom",
+        description: "Item already available in cart",
+        status: "warning",
+        duration: 9000,
+        isClosable: true,
+      });
     }
   }
 };
@@ -31,6 +42,8 @@ function Carousel() {
   const { auth, setAuth } = useContext(AuthContext);
   const [product, setProduct] = useState([]);
   const mainDivRef = useRef();
+  const toast = useToast();
+
   const slideLeft = () => {
     const current = mainDivRef.current;
     current.scrollBy({
@@ -38,6 +51,7 @@ function Carousel() {
       behavior: "smooth",
     });
   };
+  
   const slideRight = () => {
     const current = mainDivRef.current;
     current.scrollBy({
@@ -58,10 +72,10 @@ function Carousel() {
       console.error("Error fetching product data", error);
     }
   };
+
   useEffect(() => {
     slideLeft();
     slideRight();
-
     fetchData();
   }, []);
 
@@ -72,16 +86,21 @@ function Carousel() {
           {product.slice(0, 20).map((item, index) => (
             <div className={styles.card} key={index}>
               <Link to={`/card/${item._id}`}>
-
-              <img className={styles.img} src={item.productImage} alt="" />
+                <img className={styles.img} src={item.productImage} alt="" />
               </Link>
               <p className={styles.title}>{item.subtitle}</p>
               <p className={styles.price}>${item.price}</p>
               <button
                 onClick={() => {
                   auth
-                    ? addToCartButton(item._id)
-                    : alert("You need to login first");
+                    ? addToCartButton(item._id, toast)
+                    : toast({
+                      position: "bottom",
+                      description: "You need to login first",
+                      status: "warning",
+                      duration: 9000,
+                      isClosable: true,
+                    });
                 }}
                 className={styles.addToCart}
               >

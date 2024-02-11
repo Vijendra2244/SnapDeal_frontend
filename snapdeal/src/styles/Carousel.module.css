@@ -1,7 +1,7 @@
 .mainContainerOfSlider {
   position: relative;
   width: 100%;
-  background-color: white;
+  background-color: var(--normalColor);
 }
 .mainDiv {
   display: flex;
@@ -56,12 +56,13 @@
 }
 .img {
   height: 150px;
-  width: 150px;
-  padding: 2rem;
+  width: 180px;
+  padding: 1rem;
   object-fit: cover;
 }
 .card {
-  padding: 1rem;
+ padding: 1rem;
+  width: 160%;
 }
 .card:hover {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -72,7 +73,7 @@
 .price {
   color: var(--btnColor);
   opacity: 0.9;
-  font-size: 0.9rem;
+  font-size: 0.6rem;
 }
 .title {
   margin-bottom: 0.5rem;

@@ -1,14 +1,12 @@
 body {
-  background-color: #f7f7f7;
   font-family: sans-serif;
   position: relative;
   --headerColor: #c6003d;
   --mainColor: #e40046;
   --sectionColor: #ffffff;
   --btnColor: #333333;
-  --normalColor: white;
+  --normalColor: #f7f7f7;
 }
-
 * {
   margin: 0;
   padding: 0;

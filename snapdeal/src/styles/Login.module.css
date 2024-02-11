@@ -1,11 +1,13 @@
 .mainRegister {
     width: 30%;
-    margin: 2rem auto;
     display: flex;
     flex-direction: column;
     border: 1px solid gray;
     padding: 1rem;
     border-radius: 4px;
+    margin:  auto;
+    margin-bottom: 1rem;
+
   }
   .formData {
     display: flex;
@@ -31,6 +33,8 @@
       font-size: 1.1rem;
       margin-bottom: 0.5rem;
       color:var(--btnColor);
+      padding-top:100px ;
+      text-align: center;
   }
   .input{
       padding: 5px;
@@ -39,6 +43,23 @@
       border-radius: 4px;
       outline: none;
      border: 1px solid var(--btnColor);
+  }
+  .inputPaas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--btnColor);
+    padding: 5px;
+    border-radius: 4px;
+    color: var(--btnColor);
+  }
+  .inputUni {
+    border: none;
+    outline: none;
+    flex: 1;
+  }
+  .inputPaas:hover {
+    border: 1px solid var(--mainColor);
   }
   .input:focus {
       border: 1px solid var(--mainColor);
@@ -84,6 +105,10 @@
       .mainRegister{
           width: 60%;
           margin: 2rem auto;
+      }
+      .heading{
+        padding-top: 130px;
+        text-align: center;
       }
     }
     @media screen and (max-width:440px) {

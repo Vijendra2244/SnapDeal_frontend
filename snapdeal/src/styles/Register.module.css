@@ -1,11 +1,12 @@
 .mainRegister {
   width: 30%;
-  margin: 2rem auto;
+  margin: auto;
   display: flex;
   flex-direction: column;
   border: 1px solid gray;
   padding: 1rem;
   border-radius: 4px;
+  margin-bottom: 1rem;
 }
 .formData {
   display: flex;
@@ -27,56 +28,78 @@
   background-color: rgb(25, 23, 23);
 }
 
-.heading{
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    color:var(--btnColor);
+.heading {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--btnColor);
+  padding-top: 100px;
+  text-align: center;
 }
-.input{
-    padding: 5px;
-    font-size: 1rem;
-    color: var(--btnColor);
-    border-radius: 4px;
-    outline: none;
-   border: 1px solid var(--btnColor);
+.input {
+  padding: 5px;
+  font-size: 1rem;
+  color: var(--btnColor);
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid var(--btnColor);
 }
 .input:focus {
-    border: 1px solid var(--mainColor);
+  border: 1px solid var(--mainColor);
+}
+.inputPaas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--btnColor);
+  padding: 5px;
+  border-radius: 4px;
+  color: var(--btnColor);
+}
+.inputUni {
+  border: none;
+  outline: none;
+  flex: 1;
+}
+.inputPaas:hover {
+  border: 1px solid var(--mainColor);
+}
+@media screen and (max-width: 900px) {
+  .mainRegister {
+    width: 40%;
+    margin: 2rem auto;
   }
-
-  @media screen and (max-width:900px) {
-    .mainRegister{
-        width: 40%;
-        margin: 2rem auto;
-    }
+}
+@media screen and (max-width: 768px) {
+  .mainRegister {
+    width: 40%;
+    margin: 2rem auto;
   }
-  @media screen and (max-width:768px) {
-    .mainRegister{
-        width: 40%;
-        margin: 2rem auto;
-    }
+}
+@media screen and (max-width: 640px) {
+  .mainRegister {
+    width: 50%;
+    margin: 2rem auto;
   }
-  @media screen and (max-width:640px) {
-    .mainRegister{
-        width: 50%;
-        margin: 2rem auto;
-    }
+}
+@media screen and (max-width: 500px) {
+  .mainRegister {
+    width: 60%;
+    margin: 2rem auto;
   }
-  @media screen and (max-width:500px) {
-    .mainRegister{
-        width: 60%;
-        margin: 2rem auto;
-    }
+  .heading {
+    padding-top: 150px;
+    text-align: center;
   }
-  @media screen and (max-width:440px) {
-    .mainRegister{
-        width: 80%;
-        margin: 2rem auto;
-    }
+}
+@media screen and (max-width: 440px) {
+  .mainRegister {
+    width: 80%;
+    margin: 2rem auto;
   }
-  @media screen and (max-width:300px) {
-    .mainRegister{
-        width: 90%;
-        margin: 2rem auto;
-    }
+}
+@media screen and (max-width: 300px) {
+  .mainRegister {
+    width: 90%;
+    margin: 2rem auto;
   }
+}

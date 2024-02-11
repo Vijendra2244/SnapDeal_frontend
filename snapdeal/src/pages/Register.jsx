@@ -3,10 +3,14 @@ import styles from "../styles/Register.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { useToast } from "@chakra-ui/react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function Register() {
-  const navigate = useNavigate();
   const { auth, setAuth } = useContext(AuthContext);
+  const [visible, setVisible] = useState(false);
+  const navigate = useNavigate();
+  const toast = useToast();
 
   const [userDetails, setUserDetails] = useState({
     username: "",
@@ -28,12 +32,18 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const strongPasswordRegex =/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    const strongPasswordRegex =
+      /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!strongPasswordRegex.test(userDetails.password)) {
-      alert(
-        "Password must have at least one uppercase character, one number, one special character, and be at least 8 characters long."
-      );
+      toast({
+        position: "top",
+        description:
+          "Password must have at least one uppercase character, one number, one special character, and be at least 8 characters long.",
+        status: "warning",
+        duration: 9000,
+        isClosable: true,
+      });
     }
 
     const formData = new FormData();
@@ -53,11 +63,15 @@ function Register() {
         }
       );
 
-    
-      
       console.log(res);
       if (res.data.status == "success") {
-        alert("Registration successfully");
+        toast({
+          position: "bottom",
+          description: "Registration successfully",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
         setAuth(true);
         navigate("/login");
       }
@@ -71,74 +85,98 @@ function Register() {
       });
     } catch (error) {
       if (error.response && error.response.data.status === "fail") {
-        alert("All field are required!");
+        toast({
+          position: "bottom",
+          description: "All field are required!",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
       }
     }
   };
+  const handleEye = () => {
+    setVisible(!visible);
+  };
 
   return (
-    <div className={styles.mainRegister}>
+    <>
       <p className={styles.heading}>Register / SignUp</p>
-      <form onSubmit={handleSubmit} className={styles.formData}>
-        <label htmlFor="username">Enter your name</label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          onChange={handleChange}
-          value={userDetails.username}
-          className={styles.input}
-          required
-        />
-        <br />
-        <label htmlFor="email">Enter your email</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          onChange={handleChange}
-          value={userDetails.email}
-          required
-          className={styles.input}
-        />
-        <br />
-        <label htmlFor="password">Enter your password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          onChange={handleChange}
-          value={userDetails.password}
-          required
-          className={styles.input}
-        />
-        <br />
-        <label htmlFor="mobilenumber">Enter your mobile number</label>
-        <input
-          type="number"
-          name="mobilenumber"
-          id="mobilenumber"
-          onChange={handleChange}
-          value={userDetails.mobilenumber}
-          required
-          className={styles.input}
-        />
-        <br />
-        <label htmlFor="avatar">Upload your image</label>
-        <input
-          type="file"
-          name="avatar"
-          id="avatar"
-          onChange={handleChange}
-          required
-          className={styles.input}
-        />
+      <div className={styles.mainRegister}>
+        <form onSubmit={handleSubmit} className={styles.formData}>
+          <label htmlFor="username">Enter your name</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            onChange={handleChange}
+            value={userDetails.username}
+            className={styles.input}
+            required
+            placeholder="Enter your user name"
+          />
 
-        <button className={styles.registerBtn} type="submit">
-          Register
-        </button>
-      </form>
-    </div>
+          <br />
+          <label htmlFor="email">Enter your email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            onChange={handleChange}
+            value={userDetails.email}
+            required
+            className={styles.input}
+            placeholder="Enter your email"
+          />
+          <br />
+          <label htmlFor="password">Enter your password</label>
+          <div className={styles.inputPaas}>
+            <input
+              type={visible ? "text" : "password"}
+              name="password"
+              id="password"
+              onChange={handleChange}
+              value={userDetails.password}
+              required
+              className={styles.inputUni}
+              placeholder="Enter your password"
+            />
+            {visible ? (
+              <FaEye onClick={handleEye} />
+            ) : (
+              <FaEyeSlash onClick={handleEye} />
+            )}
+          </div>
+
+          <br />
+          <label htmlFor="mobilenumber">Enter your mobile number</label>
+          <input
+            type="number"
+            name="mobilenumber"
+            id="mobilenumber"
+            onChange={handleChange}
+            value={userDetails.mobilenumber}
+            required
+            className={styles.input}
+            placeholder="Enter your mobile number"
+          />
+          <br />
+          <label htmlFor="avatar">Upload your image</label>
+          <input
+            type="file"
+            name="avatar"
+            id="avatar"
+            onChange={handleChange}
+            required
+            className={styles.input}
+          />
+
+          <button className={styles.registerBtn} type="submit">
+            Register
+          </button>
+        </form>
+      </div>
+    </>
   );
 }
 

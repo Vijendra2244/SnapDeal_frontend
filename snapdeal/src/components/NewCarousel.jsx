@@ -1,15 +1,17 @@
 import React, { useContext, useState } from "react";
-import styles from "../styles/Carousel.module.css";
+import styles from "../styles/NewCarousel.module.css";
 import { useRef, useEffect } from "react";
 import { RxChevronLeft, RxChevronRight } from "react-icons/rx";
 import axios from "axios";
 import {addToCartButton} from "./Carousel"
 import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
 
 function NewCarousel() {
   const {auth,setAuth} =useContext(AuthContext)
   const [product, setProduct] = useState([]);
+  const toast = useToast()
   const mainDivRef = useRef();
   const slideLeft = () => {
     const current = mainDivRef.current;
@@ -58,8 +60,14 @@ function NewCarousel() {
             <button
               onClick={() => {
                 auth
-                  ? addToCartButton(item._id)
-                  : alert("You need to login first");
+                  ? addToCartButton(item._id,toast)
+                  :  toast({
+                    position: "bottom",
+                    description: "You need to login first",
+                    status: "warning",
+                    duration: 9000,
+                    isClosable: true,
+                  });
               }}
               className={styles.addToCart}
             >

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "../styles/Login.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
 
 function OtpResetPass() {
   const [userDetails, setUserDetails] = useState({
@@ -9,6 +10,7 @@ function OtpResetPass() {
     newPassword: "",
   });
   const navigate = useNavigate();
+  const toast = useToast()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +35,14 @@ function OtpResetPass() {
 
       console.log(res);
       if (res.data.status == "success") {
-        alert("Password reset successfully");
+        toast({
+          position: "bottom",
+          description: "Password reset successfully",
+          status: "warning",
+          duration: 9000,
+          isClosable: true,
+        });;
+    
         navigate("/");
       }
 
@@ -43,45 +52,54 @@ function OtpResetPass() {
       });
     } catch (error) {
       if (error.response && error.response.data.status === "fail") {
-        alert(
-          "Otp not send please enter valid email which is verified on gmail.com"
-        );
+        toast({
+          position: "bottom",
+          description: "Otp not send please enter valid email which is verified on gmail.com",
+          status: "warning",
+          duration: 9000,
+          isClosable: true,
+        });;
+       
       }
     }
   };
 
   return (
-    <div className={styles.mainRegister}>
+    <>
       <p className={styles.heading}>Enter your email and new password</p>
-      <form onSubmit={handleSubmit} className={styles.formData}>
-        <label htmlFor="email">Enter your email</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          onChange={handleChange}
-          value={userDetails.email}
-          required
-          className={styles.input}
-        />
-        <br />
+      <div className={styles.mainRegister}>
+        <form onSubmit={handleSubmit} className={styles.formData}>
+          <label htmlFor="email">Enter your email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            onChange={handleChange}
+            value={userDetails.email}
+            required
+            placeholder="Enter your email"
+            className={styles.input}
+          />
+          <br />
 
-        <label htmlFor="newPassword">Enter your new password</label>
-        <input
-          type="newPassword"
-          name="newPassword"
-          id="newPassword"
-          onChange={handleChange}
-          value={userDetails.newPassword}
-          required
-          className={styles.input}
-        />
+          <label htmlFor="newPassword">Enter your new password</label>
+          <input
+            type="text"
+            name="newPassword"
+            id="newPassword"
+            onChange={handleChange}
+            value={userDetails.newPassword}
+            required
+            className={styles.input}
+            placeholder="Enter your new password"
+          />
 
-        <button className={styles.registerBtn} type="submit">
-          Forget Password
-        </button>
-      </form>
-    </div>
+          <button className={styles.registerBtn} type="submit">
+            Forget Password
+          </button>
+        </form>
+      </div>
+    </>
   );
 }
 

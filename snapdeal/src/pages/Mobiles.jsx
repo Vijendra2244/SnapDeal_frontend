@@ -4,11 +4,13 @@ import axios from "axios";
 import { addToCartButton } from "../components/Carousel";
 import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
 
 function Mobiles() {
   const { auth, setAuth } = useContext(AuthContext);
   const [mobiles, setMobiles] = useState([]);
   const [sortOrder, setSortOrder] = useState("");
+  const toast = useToast()
   const fetchMobilesData = async () => {
     try {
       const res = await axios.get(
@@ -57,8 +59,14 @@ function Mobiles() {
               <button
                 onClick={() => {
                   auth
-                    ? addToCartButton(item._id)
-                    : alert("You need to login first");
+                    ? addToCartButton(item._id,toast)
+                    : toast({
+                      position: "bottom",
+                      description: "You need to login first",
+                      status: "warning",
+                      duration: 9000,
+                      isClosable: true,
+                    });
                 }}
                 className={styles.btn}
               >

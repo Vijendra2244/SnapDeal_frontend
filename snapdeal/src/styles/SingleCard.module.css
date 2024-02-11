@@ -5,8 +5,9 @@
   margin: 2rem auto;
   display: flex;
   width: 50%;
-  padding: 2rem;
+  padding: 8rem;
   gap: 1rem;
+ 
 }
 .btn {
   background-color: var(--btnColor);

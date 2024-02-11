@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "../styles/Logout.module.css";
 import { ImageContext } from "../context/UserImageContext.jsx";
 import { AuthContext } from "../context/AuthContext.jsx";
+import { useToast } from "@chakra-ui/react";
 
 export const logoutUser = async () => {
   try {
@@ -38,14 +39,21 @@ function Logout() {
   const { userImage, setUserImage } = useContext(ImageContext);
   const { auth, setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
+  const toast = useToast();
 
   const handleLogout = async () => {
     const logoutResult = await logoutUser();
     if (logoutResult.success) {
       setUserImage("");
       localStorage.removeItem("userImage");
-      alert("User logged out");
       setAuth(false);
+      toast({
+        position: "bottom",
+        description: "Logout successfully",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
       navigate("/");
     }
   };

@@ -1,8 +1,13 @@
 .navbarContainer {
-  height: 65px;
+  height: auto;
   background-color: var(--mainColor);
   display: flex;
+  flex-direction: column;
   align-items: center;
+  z-index: 99999;
+  padding: 5px 0;
+  position: fixed;
+  width: 100%;
 }
 
 .navbar {
@@ -13,22 +18,31 @@
   margin: auto;
   position: relative;
 }
-.userImage{
+.userImage {
   border-radius: 100%;
   height: 50px;
   width: 50px;
 }
-@media screen  and (max-width:640px){
-  .userImage{
+.userImage:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1200px) {
+  .navbarContainer {
+    margin-top: 0px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .userImage {
     height: 30px;
     width: 30px;
     margin-left: 0.5rem;
   }
 }
 
-
-@media screen  and (max-width:550px){
-  .userImage{
+@media screen and (max-width: 550px) {
+  .userImage {
     height: 30px;
     width: 30px;
     margin-left: 0.5rem;
@@ -40,9 +54,9 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-   gap: 0.4rem;
+    gap: 0.4rem;
   }
-  .navbarContainer{
+  .navbarContainer {
     height: 120px;
   }
 }
@@ -52,7 +66,10 @@
     display: flex;
     width: 100%;
   }
-  .navbarContainer{
+  .navbarContainer {
     width: 100%;
+  }
+  .userImage {
+    margin-right: 1rem;
   }
 }
