@@ -125,6 +125,7 @@ function Login() {
             If you are new user please register first
           </Link>
         </form>
+        <a href="https://snapdealbackend-production.up.railway.app/login">Continue with google</a>
       </div>
     </>
   );
