@@ -24,7 +24,7 @@ function AddToCart() {
       description: "Test Transaction",
       image: snapdeal,
       order_id: order.id,
-      callback_url: "http://localhost:8080/payment/verification",
+      callback_url: "https://snapdeal0101.netlify.app/",
       prefill: {
         name: "xyzxyz",
         email: "xyz.soni@example.com",
