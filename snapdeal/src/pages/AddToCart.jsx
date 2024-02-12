@@ -2,13 +2,46 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "../styles/Mens.module.css";
 import { useToast } from "@chakra-ui/react";
+import snapdeal from "../images/snapdeallogo.svg";
 
 function AddToCart() {
   const [cartData, setCartData] = useState([]);
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [showLoader, setShowLoader] = useState(false);
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-  const toast = useToast()
+  const toast = useToast();
+
+  //this is for razorpay 
+  const checkoutHandler = async ({ name, amount }) => {
+    const {
+      data: { order },
+    } = await axios.post(`http://localhost:8080/payment/checkout`, {
+      name,
+      amount,
+    });
+    var options = {
+      key: "rzp_test_lDKz5Mp6nAXD0O",
+      amount: order.amount,
+      currency: order.currency,
+      name: "snapdeal",
+      description: "Test Transaction",
+      image: snapdeal,
+      order_id: order.id,
+      callback_url: "http://localhost:8080/payment/verification",
+      prefill: {
+        name: "mihir",
+        email: "mihir.soni@example.com",
+        contact: "9000090000",
+      },
+      notes: {
+        address: "Razorpay Corporate Office",
+      },
+      theme: {
+        color: "#3399CC",
+      },
+    };
+    var rzp1 = new window.Razorpay(options);
+    rzp1.open();
+    console.log(order);
+  };
+
   const fetchCartData = async () => {
     try {
       const res = await axios.get(
@@ -22,13 +55,12 @@ function AddToCart() {
       if (error.response.data.status == "fail") {
         toast({
           position: "bottom",
-          description: "You need to login first after that you will be able to access cart",
+          description:
+            "You need to login first after that you will be able to access cart",
           status: "warning",
           duration: 9000,
           isClosable: true,
         });
-          
-        
       }
     }
   };
@@ -53,21 +85,10 @@ function AddToCart() {
     fetchCartData();
   }, []);
 
-  const handlePaymentConfirm = () => {
-    setShowPaymentModal(false);
-    setShowLoader(true);
-    setTimeout(() => {
-      setShowLoader(false);
-      setShowSuccessMessage(true);
-      setTimeout(() => {
-        setShowSuccessMessage(false);
-      }, 2000); 
-    }, Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000); 
-  };
-
+ 
   return (
     <>
-    <h1 className={styles.heading}></h1>
+      <h1 className={styles.heading}></h1>
       <div className={styles.mens}>
         {cartData.length == 0 ? (
           <h1 className={styles.cartHeading}>Your cart is empty</h1>
@@ -91,8 +112,13 @@ function AddToCart() {
                 Delete
               </button>
               <button
-                onClick={() => setShowPaymentModal(true)}
                 className={styles.btnProceed}
+                onClick={() =>
+                  checkoutHandler({
+                    name: item.productInfo.subtitle,
+                    amount: item.productInfo.price,
+                  })
+                }
               >
                 Proceed To Buy
               </button>
@@ -100,62 +126,6 @@ function AddToCart() {
           ))
         )}
       </div>
-
-      {/* Payment Modal */}
-      {showPaymentModal && (
-        <div className={styles.paymentModal}>
-          <p className={styles.productsDetails}>Products Details</p>
-          <ul>
-            {cartData.map((item, index) => (
-              <li className={styles.productsDetails} key={index}>
-                {item.productInfo.shortDescription}
-                <h3>Total Amount:${item.productInfo.price}</h3>
-              </li>
-            ))}
-          </ul>
-          <button className={styles.btnProceed} onClick={handlePaymentConfirm}>
-            Confirm Payment
-          </button>
-          <button
-            className={styles.btnProceed}
-            onClick={() => setShowPaymentModal(false)}
-          >
-            Cancel
-          </button>
-        </div>
-      )}
-
-      {/* Loader */}
-      {showLoader && (
-        <div className={styles.loader}>
-          <div className={styles.loaderContent}></div>
-        </div>
-      )}
-
-      {/* Success Message Modal */}
-      {showSuccessMessage && (
-        <div className={styles.successPopup}>
-          <div className={styles.successMessage}>
-            <div className={styles.successIcon}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="feather feather-check-circle"
-              >
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="16 12 12 8 8 12"></polyline>
-                <line x1="12" y1="16" x2="12" y2="8"></line>
-              </svg>
-            </div>
-            <p>Payment Successful!</p>
-          </div>
-        </div>
-      )}
     </>
   );
 }
