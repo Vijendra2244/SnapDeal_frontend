@@ -38,7 +38,7 @@ function OtpResetPass() {
         toast({
           position: "bottom",
           description: "Password reset successfully",
-          status: "warning",
+          status: "success",
           duration: 9000,
           isClosable: true,
         });;
