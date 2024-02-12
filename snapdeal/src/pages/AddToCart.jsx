@@ -12,7 +12,7 @@ function AddToCart() {
   const checkoutHandler = async ({ name, amount }) => {
     const {
       data: { order },
-    } = await axios.post(`http://localhost:8080/payment/checkout`, {
+    } = await axios.post(`https://snapdealbackend-production.up.railway.app/payment/checkout`, {
       name,
       amount,
     });
@@ -26,8 +26,8 @@ function AddToCart() {
       order_id: order.id,
       callback_url: "http://localhost:8080/payment/verification",
       prefill: {
-        name: "mihir",
-        email: "mihir.soni@example.com",
+        name: "xyzxyz",
+        email: "xyz.soni@example.com",
         contact: "9000090000",
       },
       notes: {
