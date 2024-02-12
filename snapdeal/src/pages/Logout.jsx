@@ -47,6 +47,7 @@ function Logout() {
       setUserImage("");
       localStorage.removeItem("userImage");
       setAuth(false);
+      localStorage.removeItem("auth")
       toast({
         position: "bottom",
         description: "Logout successfully",
