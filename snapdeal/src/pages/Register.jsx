@@ -37,7 +37,7 @@ function Register() {
       /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!strongPasswordRegex.test(userDetails.password)) {
       toast({
-        position: "top",
+        position: "bottom",
         description:
           "Password must have at least one uppercase character, one number, one special character, and be at least 8 characters long.",
         status: "warning",
