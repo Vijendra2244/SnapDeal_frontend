@@ -9,7 +9,7 @@ function OtpVerify() {
     email: "",
     otp: "",
   });
-  const toast = useToast()
+  const toast = useToast();
   const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,7 +25,7 @@ function OtpVerify() {
 
     try {
       const res = await axios.post(
-        "https://snapdealbackend-production.up.railway.app/users/otpVerify",
+        "https://snap-deal-backend.vercel.app/users/otpVerify",
         userDetails,
         {
           withCredentials: true,

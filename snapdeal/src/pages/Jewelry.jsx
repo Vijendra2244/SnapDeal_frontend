@@ -9,12 +9,12 @@ import { useToast } from "@chakra-ui/react";
 function Jewelry() {
   const { auth, setAuth } = useContext(AuthContext);
   const [jewelry, setJewelry] = useState([]);
-  const [sortOrder, setSortOrder] = useState("")
-  const toast = useToast()
+  const [sortOrder, setSortOrder] = useState("");
+  const toast = useToast();
   const fetchJewelryData = async () => {
     try {
       const res = await axios.get(
-        "https://snapdealbackend-production.up.railway.app/products/?category=Jewelry"
+        "https://snap-deal-backend.vercel.app/products/?category=Jewelry"
       );
 
       setJewelry(res.data.data.products);
@@ -59,14 +59,14 @@ function Jewelry() {
             <button
               onClick={() => {
                 auth
-                  ? addToCartButton(item._id,toast)
+                  ? addToCartButton(item._id, toast)
                   : toast({
-                    position: "bottom",
-                    description: "You need to login first",
-                    status: "warning",
-                    duration: 9000,
-                    isClosable: true,
-                  });
+                      position: "bottom",
+                      description: "You need to login first",
+                      status: "warning",
+                      duration: 9000,
+                      isClosable: true,
+                    });
               }}
               className={styles.btn}
             >

@@ -17,7 +17,7 @@ function SingleCard() {
     const fetchCardDetails = async () => {
       try {
         const response = await axios.get(
-          `https://snapdealbackend-production.up.railway.app/products/getById/${id}`,
+          `https://snap-deal-backend.vercel.app/products/getById/${id}`,
           { withCredentials: true }
         );
         setCardDetails(response.data.data.product);
@@ -34,13 +34,12 @@ function SingleCard() {
       {cardDetails && Object.keys(cardDetails).length > 0 ? (
         <div className={styles.main}>
           <div className={styles.img}>
-
-          <img
-            className={styles.image}
-            src={cardDetails.productImage}
-            alt="singleImage"
+            <img
+              className={styles.image}
+              src={cardDetails.productImage}
+              alt="singleImage"
             />
-            </div>
+          </div>
           <div>
             <p className={styles.subtitle}>{cardDetails.subtitle}</p>
             <p className={styles.price}>${cardDetails.price}</p>

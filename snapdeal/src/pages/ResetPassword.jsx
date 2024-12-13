@@ -12,7 +12,7 @@ function ResetPassword() {
     email: "",
   });
 
-  const toast = useToast()
+  const toast = useToast();
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -27,7 +27,7 @@ function ResetPassword() {
 
     try {
       const res = await axios.post(
-        "https://snapdealbackend-production.up.railway.app/users/resetpassword",
+        "https://snap-deal-backend.vercel.app/users/resetpassword",
         userDetails,
         {
           withCredentials: true,
@@ -52,7 +52,7 @@ function ResetPassword() {
       });
     } catch (error) {
       console.error("Reset  failed:", error);
-      if(error.response.data.msg=="Your old password is incorrect"){
+      if (error.response.data.msg == "Your old password is incorrect") {
         toast({
           position: "bottom",
           description: "Your old password is incorrect",

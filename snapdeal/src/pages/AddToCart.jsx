@@ -12,7 +12,7 @@ function AddToCart() {
   const checkoutHandler = async ({ name, amount }) => {
     const {
       data: { order },
-    } = await axios.post(`https://snapdealbackend-production.up.railway.app/payment/checkout`, {
+    } = await axios.post(`https://snap-deal-backend.vercel.app/payment/checkout`, {
       name,
       amount,
     });
@@ -24,7 +24,7 @@ function AddToCart() {
       description: "Test Transaction",
       image: snapdeal,
       order_id: order.id,
-      callback_url: "https://snapdealbackend-production.up.railway.app/payment/verification",
+      callback_url: "https://snap-deal-backend.vercel.app/payment/verification",
       prefill: {
         name: "xyzxyz",
         email: "xyz.soni@example.com",
@@ -45,7 +45,7 @@ function AddToCart() {
   const fetchCartData = async () => {
     try {
       const res = await axios.get(
-        `https://snapdealbackend-production.up.railway.app/carts/`,
+        `https://snap-deal-backend.vercel.app/carts/`,
         { withCredentials: true }
       );
 
@@ -68,7 +68,7 @@ function AddToCart() {
   const deleteCartInCartSection = async (productId) => {
     try {
       const res = await axios.post(
-        "https://snapdealbackend-production.up.railway.app/carts/deleteCart",
+        "https://snap-deal-backend.vercel.app/carts/deleteCart",
         { productId },
         { withCredentials: true }
       );

@@ -10,11 +10,11 @@ function Mobiles() {
   const { auth, setAuth } = useContext(AuthContext);
   const [mobiles, setMobiles] = useState([]);
   const [sortOrder, setSortOrder] = useState("");
-  const toast = useToast()
+  const toast = useToast();
   const fetchMobilesData = async () => {
     try {
       const res = await axios.get(
-        "https://snapdealbackend-production.up.railway.app/products/?category=Mobile Phones"
+        "https://snap-deal-backend.vercel.app/products/?category=Mobile Phones"
       );
       console.log(res);
       setMobiles(res.data.data.products);
@@ -45,34 +45,34 @@ function Mobiles() {
         <button className={styles.btn} onClick={() => handleSort("desc")}>
           Sort by Price High to Low
         </button>
-        </div>
+      </div>
       <div className={styles.mens}>
         {mobiles.map((item, index) => (
           <div className={styles.mainCard} key={index}>
-              <Link to={`/card/${item._id}`}>
+            <Link to={`/card/${item._id}`}>
               <div className={styles.imageContainer}>
                 <img className={styles.img} src={item.productImage} alt="" />
               </div>
-              </Link>
-              <p>{item.subtitle}</p>
-              <p>${item.price}</p>
-              <button
-                onClick={() => {
-                  auth
-                    ? addToCartButton(item._id,toast)
-                    : toast({
+            </Link>
+            <p>{item.subtitle}</p>
+            <p>${item.price}</p>
+            <button
+              onClick={() => {
+                auth
+                  ? addToCartButton(item._id, toast)
+                  : toast({
                       position: "bottom",
                       description: "You need to login first",
                       status: "warning",
                       duration: 9000,
                       isClosable: true,
                     });
-                }}
-                className={styles.btn}
-              >
-                AddToCart
-              </button>
-            </div>
+              }}
+              className={styles.btn}
+            >
+              AddToCart
+            </button>
+          </div>
         ))}
       </div>
     </>

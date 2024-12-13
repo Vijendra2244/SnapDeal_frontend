@@ -10,7 +10,7 @@ function OtpResetPass() {
     newPassword: "",
   });
   const navigate = useNavigate();
-  const toast = useToast()
+  const toast = useToast();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,7 +26,7 @@ function OtpResetPass() {
 
     try {
       const res = await axios.post(
-        "https://snapdealbackend-production.up.railway.app/users/forgotPassword",
+        "https://snap-deal-backend.vercel.app/users/forgotPassword",
         userDetails,
         {
           withCredentials: true,
@@ -41,8 +41,8 @@ function OtpResetPass() {
           status: "success",
           duration: 9000,
           isClosable: true,
-        });;
-    
+        });
+
         navigate("/");
       }
 
@@ -54,12 +54,12 @@ function OtpResetPass() {
       if (error.response && error.response.data.status === "fail") {
         toast({
           position: "bottom",
-          description: "Otp not send please enter valid email which is verified on gmail.com",
+          description:
+            "Otp not send please enter valid email which is verified on gmail.com",
           status: "warning",
           duration: 9000,
           isClosable: true,
-        });;
-       
+        });
       }
     }
   };

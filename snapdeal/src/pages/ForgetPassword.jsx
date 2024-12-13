@@ -4,13 +4,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
 
-
 function ForgetPassword() {
   const [userDetails, setUserDetails] = useState({
     email: "",
   });
-  const navigate = useNavigate()
-  const toast  = useToast()
+  const navigate = useNavigate();
+  const toast = useToast();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,7 +25,7 @@ function ForgetPassword() {
 
     try {
       const res = await axios.post(
-        "https://snapdealbackend-production.up.railway.app/users/otpRequest",
+        "https://snap-deal-backend.vercel.app/users/otpRequest",
         userDetails,
         {
           withCredentials: true,
@@ -34,17 +33,17 @@ function ForgetPassword() {
       );
 
       console.log(res);
-     if(res.data.status=="success"){
-      
-      navigate("/otpverification")
-      toast({
-        position: "bottom",
-        description: "Otp send on your email and please enter your mail and otp here",
-        status: "success",
-        duration: 9000,
-        isClosable: true,
-      });
-     }
+      if (res.data.status == "success") {
+        navigate("/otpverification");
+        toast({
+          position: "bottom",
+          description:
+            "Otp send on your email and please enter your mail and otp here",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
+      }
       setUserDetails({
         email: "",
       });
@@ -52,12 +51,12 @@ function ForgetPassword() {
       if (error.response && error.response.data.status === "fail") {
         toast({
           position: "bottom",
-          description: "Otp not send please enter valid email which is verified on gmail.com",
+          description:
+            "Otp not send please enter valid email which is verified on gmail.com",
           status: "error",
           duration: 9000,
           isClosable: true,
         });
-     
       }
     }
   };
@@ -65,26 +64,26 @@ function ForgetPassword() {
   return (
     <>
       <p className={styles.heading}>Send OTP to your email</p>
-    <div className={styles.mainRegister}>
-      <form onSubmit={handleSubmit} className={styles.formData}>
-        <label htmlFor="email">Enter your email</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          onChange={handleChange}
-          value={userDetails.email}
-          required
-          className={styles.input}
-          placeholder="Enter your email"
-        />
-        <br />
+      <div className={styles.mainRegister}>
+        <form onSubmit={handleSubmit} className={styles.formData}>
+          <label htmlFor="email">Enter your email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            onChange={handleChange}
+            value={userDetails.email}
+            required
+            className={styles.input}
+            placeholder="Enter your email"
+          />
+          <br />
 
-        <button className={styles.registerBtn} type="submit">
-          Send OTP
-        </button>
-      </form>
-    </div>
+          <button className={styles.registerBtn} type="submit">
+            Send OTP
+          </button>
+        </form>
+      </div>
     </>
   );
 }

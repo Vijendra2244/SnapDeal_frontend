@@ -10,11 +10,11 @@ function Womens() {
   const { auth, setAuth } = useContext(AuthContext);
   const [woMensData, setWoMensData] = useState([]);
   const [sortOrder, setSortOrder] = useState("");
-  const toast = useToast()
+  const toast = useToast();
   const fetchWoMensData = async () => {
     try {
       const res = await axios.get(
-        "https://snapdealbackend-production.up.railway.app/products/?category=Women's Clothing"
+        "https://snap-deal-backend.vercel.app/products/?category=Women's Clothing"
       );
 
       setWoMensData(res.data.data.products);
@@ -59,14 +59,14 @@ function Womens() {
             <button
               onClick={() => {
                 auth
-                  ? addToCartButton(item._id,toast)
-                  :  toast({
-                    position: "bottom",
-                    description: "You need to login first",
-                    status: "warning",
-                    duration: 9000,
-                    isClosable: true,
-                  });
+                  ? addToCartButton(item._id, toast)
+                  : toast({
+                      position: "bottom",
+                      description: "You need to login first",
+                      status: "warning",
+                      duration: 9000,
+                      isClosable: true,
+                    });
               }}
               className={styles.btn}
             >

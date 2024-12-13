@@ -11,7 +11,7 @@ export const logoutUser = async () => {
     document.cookie =
       "access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     const res = await axios.post(
-      "https://snapdealbackend-production.up.railway.app/users/logout",
+      "https://snap-deal-backend.vercel.app/users/logout",
       {},
       {
         withCredentials: true,
@@ -47,7 +47,7 @@ function Logout() {
       setUserImage("");
       localStorage.removeItem("userImage");
       setAuth(false);
-      localStorage.removeItem("auth")
+      localStorage.removeItem("auth");
       toast({
         position: "bottom",
         description: "Logout successfully",

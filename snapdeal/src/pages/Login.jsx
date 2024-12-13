@@ -34,13 +34,13 @@ function Login() {
 
     try {
       const res = await axios.post(
-        "https://snapdealbackend-production.up.railway.app/users/login",
+        "https://snap-deal-backend.vercel.app/users/login",
         userDetails,
         {
           withCredentials: true,
         }
       );
-      console.log(res)
+      console.log(res);
 
       if (res.data.status == "success") {
         setUserImage(res.data.avatar);

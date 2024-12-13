@@ -10,7 +10,7 @@ import { useToast } from "@chakra-ui/react";
 export const addToCartButton = async (productId, toast) => {
   try {
     const res = await axios.post(
-      "https://snapdealbackend-production.up.railway.app/carts/addToCart/",
+      "https://snap-deal-backend.vercel.app/carts/addToCart/",
       { productId },
       { withCredentials: true }
     );
@@ -51,7 +51,7 @@ function Carousel() {
       behavior: "smooth",
     });
   };
-  
+
   const slideRight = () => {
     const current = mainDivRef.current;
     current.scrollBy({
@@ -63,7 +63,7 @@ function Carousel() {
   const fetchData = async () => {
     try {
       const productData = await axios.get(
-        "https://snapdealbackend-production.up.railway.app/products/",
+        "https://snap-deal-backend.vercel.app/products/",
         { withCredentials: true }
       );
 
@@ -95,12 +95,12 @@ function Carousel() {
                   auth
                     ? addToCartButton(item._id, toast)
                     : toast({
-                      position: "bottom",
-                      description: "You need to login first",
-                      status: "warning",
-                      duration: 9000,
-                      isClosable: true,
-                    });
+                        position: "bottom",
+                        description: "You need to login first",
+                        status: "warning",
+                        duration: 9000,
+                        isClosable: true,
+                      });
                 }}
                 className={styles.addToCart}
               >

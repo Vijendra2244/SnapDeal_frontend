@@ -55,7 +55,7 @@ function Register() {
 
     try {
       const res = await axios.post(
-        "https://snapdealbackend-production.up.railway.app/users/register",
+        "https://snap-deal-backend.vercel.app/users/register",
         formData,
         {
           withCredentials: true,
