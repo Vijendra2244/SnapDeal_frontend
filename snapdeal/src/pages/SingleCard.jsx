@@ -17,7 +17,7 @@ function SingleCard() {
     const fetchCardDetails = async () => {
       try {
         const response = await axios.get(
-          `https://snap-deal-backend.vercel.app/products/getById/${id}`,
+          `https://snapdeal-backend-l15i.onrender.com/products/getById/${id}`,
           { withCredentials: true }
         );
         setCardDetails(response.data.data.product);

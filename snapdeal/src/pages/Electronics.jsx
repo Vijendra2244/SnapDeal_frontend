@@ -14,7 +14,7 @@ function Electronics() {
   const fetchElectronicsData = async () => {
     try {
       const res = await axios.get(
-        "https://snap-deal-backend.vercel.app/products/?category=Electronics"
+        "https://snapdeal-backend-l15i.onrender.com/products/?category=Electronics"
       );
 
       setElectro(res.data.data.products);

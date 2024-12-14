@@ -14,7 +14,7 @@ function Jewelry() {
   const fetchJewelryData = async () => {
     try {
       const res = await axios.get(
-        "https://snap-deal-backend.vercel.app/products/?category=Jewelry"
+        "https://snapdeal-backend-l15i.onrender.com/products/?category=Jewelry"
       );
 
       setJewelry(res.data.data.products);

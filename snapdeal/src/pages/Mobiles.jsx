@@ -14,7 +14,7 @@ function Mobiles() {
   const fetchMobilesData = async () => {
     try {
       const res = await axios.get(
-        "https://snap-deal-backend.vercel.app/products/?category=Mobile Phones"
+        "https://snapdeal-backend-l15i.onrender.com/products/?category=Mobile Phones"
       );
       console.log(res);
       setMobiles(res.data.data.products);

@@ -11,7 +11,7 @@ export const logoutUser = async () => {
     document.cookie =
       "access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     const res = await axios.post(
-      "https://snap-deal-backend.vercel.app/users/logout",
+      "https://snapdeal-backend-l15i.onrender.com/users/logout",
       {},
       {
         withCredentials: true,

@@ -25,7 +25,7 @@ function ForgetPassword() {
 
     try {
       const res = await axios.post(
-        "https://snap-deal-backend.vercel.app/users/otpRequest",
+        "https://snapdeal-backend-l15i.onrender.com/users/otpRequest",
         userDetails,
         {
           withCredentials: true,

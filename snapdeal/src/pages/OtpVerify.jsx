@@ -25,7 +25,7 @@ function OtpVerify() {
 
     try {
       const res = await axios.post(
-        "https://snap-deal-backend.vercel.app/users/otpVerify",
+        "https://snapdeal-backend-l15i.onrender.com/users/otpVerify",
         userDetails,
         {
           withCredentials: true,

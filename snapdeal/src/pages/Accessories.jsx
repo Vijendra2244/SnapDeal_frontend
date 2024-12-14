@@ -14,7 +14,7 @@ function Accessories() {
   const fetchAccData = async () => {
     try {
       const res = await axios.get(
-        "https://snap-deal-backend.vercel.app/products/?category=Accessories"
+        "https://snapdeal-backend-l15i.onrender.com/products/?category=Accessories"
       );
 
       setAcc(res.data.data.products);

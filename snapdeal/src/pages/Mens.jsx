@@ -15,7 +15,7 @@ function Mens() {
   const fetchMensData = async () => {
     try {
       const res = await axios.get(
-        "https://snap-deal-backend.vercel.app/products/?category=Men's Clothing"
+        "https://snapdeal-backend-l15i.onrender.com/products/?category=Men's Clothing"
       );
 
       setMensData(res.data.data.products);

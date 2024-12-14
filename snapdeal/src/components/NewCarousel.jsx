@@ -30,7 +30,7 @@ function NewCarousel() {
   const fetchData = async () => {
     try {
       const productData = await axios.get(
-        "https://snap-deal-backend.vercel.app/products/",
+        "https://snapdeal-backend-l15i.onrender.com/products/",
         { withCredentials: true }
       );
 

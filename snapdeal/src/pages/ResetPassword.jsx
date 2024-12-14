@@ -27,7 +27,7 @@ function ResetPassword() {
 
     try {
       const res = await axios.post(
-        "https://snap-deal-backend.vercel.app/users/resetpassword",
+        "https://snapdeal-backend-l15i.onrender.com/users/resetpassword",
         userDetails,
         {
           withCredentials: true,

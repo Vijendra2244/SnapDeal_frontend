@@ -8,14 +8,17 @@ function AddToCart() {
   const [cartData, setCartData] = useState([]);
   const toast = useToast();
 
-  //this is for razorpay 
+  //this is for razorpay
   const checkoutHandler = async ({ name, amount }) => {
     const {
       data: { order },
-    } = await axios.post(`https://snap-deal-backend.vercel.app/payment/checkout`, {
-      name,
-      amount,
-    });
+    } = await axios.post(
+      `https://snapdeal-backend-l15i.onrender.com/payment/checkout`,
+      {
+        name,
+        amount,
+      }
+    );
     var options = {
       key: "rzp_test_lDKz5Mp6nAXD0O",
       amount: order.amount,
@@ -24,7 +27,8 @@ function AddToCart() {
       description: "Test Transaction",
       image: snapdeal,
       order_id: order.id,
-      callback_url: "https://snap-deal-backend.vercel.app/payment/verification",
+      callback_url:
+        "https://snapdeal-backend-l15i.onrender.com/payment/verification",
       prefill: {
         name: "xyzxyz",
         email: "xyz.soni@example.com",
@@ -45,7 +49,7 @@ function AddToCart() {
   const fetchCartData = async () => {
     try {
       const res = await axios.get(
-        `https://snap-deal-backend.vercel.app/carts/`,
+        `https://snapdeal-backend-l15i.onrender.com/carts/`,
         { withCredentials: true }
       );
 
@@ -68,7 +72,7 @@ function AddToCart() {
   const deleteCartInCartSection = async (productId) => {
     try {
       const res = await axios.post(
-        "https://snap-deal-backend.vercel.app/carts/deleteCart",
+        "https://snapdeal-backend-l15i.onrender.com/carts/deleteCart",
         { productId },
         { withCredentials: true }
       );
@@ -85,7 +89,6 @@ function AddToCart() {
     fetchCartData();
   }, []);
 
- 
   return (
     <>
       <h1 className={styles.heading}></h1>

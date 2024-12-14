@@ -34,7 +34,7 @@ function Login() {
 
     try {
       const res = await axios.post(
-        "https://snap-deal-backend.vercel.app/users/login",
+        "https://snapdeal-backend-l15i.onrender.com/users/login",
         userDetails,
         {
           withCredentials: true,

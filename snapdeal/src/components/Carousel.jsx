@@ -10,7 +10,7 @@ import { useToast } from "@chakra-ui/react";
 export const addToCartButton = async (productId, toast) => {
   try {
     const res = await axios.post(
-      "https://snap-deal-backend.vercel.app/carts/addToCart/",
+      "https://snapdeal-backend-l15i.onrender.com/carts/addToCart/",
       { productId },
       { withCredentials: true }
     );
@@ -63,7 +63,7 @@ function Carousel() {
   const fetchData = async () => {
     try {
       const productData = await axios.get(
-        "https://snap-deal-backend.vercel.app/products/",
+        "https://snapdeal-backend-l15i.onrender.com/products/",
         { withCredentials: true }
       );
 
